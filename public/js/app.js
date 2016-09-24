@@ -7,6 +7,16 @@ myApp.config(function($routeProvider){
 			templateUrl
 			: 'partials/busLogin.html'
 		})
+		.when('/userLanding', {
+			controller: 'userController'
+			templateUrl
+			: 'partials/userLanding.html'
+		})
+		.when('/busLanding', {
+			controller: 'busController'
+			templateUrl
+			: 'partials/busLanding.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		})
