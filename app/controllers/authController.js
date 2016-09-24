@@ -59,8 +59,7 @@ module.exports = (function(){
 			console.log('userReg in back AuthController');
 			console.log(req.body);
 			var user = req.body;
-			if(! req.body.)
-
+			if(! req.body){}
 		}
 	}
 })();

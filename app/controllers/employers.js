@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Employer = mongoose.model('Employer');
-var timeoutManager = require('./../managers/client_manager')
+var timeoutManager = require('./../managers/timeoutManager.js')
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var bCrypt = require('bcrypt-nodejs');
@@ -33,39 +33,38 @@ module.exports = (function(){
 
 			Employer.save().then(function(user){
 				console.log('this is the user', user)
-			}) 
-		}
-	},
+			});
+		},
 
-	login: function(req, res){
-		var employer = req.body; 
-		var filtemail = xssFilters.inHTMLData(employer.email);
-		Employer.findOne({email : employer.email}, function(err, user){
-			var verifyPassword = req.body.password; 
-			if(!user){
-				console.log(err);
-				res.send({status:500, message: 'Sorry, the user account does not exist. Please check again!', type:'internal'});
-			}
-			else if(!isvalidPassword(req.body.password, user.password)){
-				console.log(err);
-				// err = "Incorrect password. Please check again!";
-				res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
-				// res.json(err);
+		login: function(req, res){
+			var employer = req.body; 
+			var filtemail = xssFilters.inHTMLData(employer.email);
+			Employer.findOne({email : employer.email}, function(err, user){
+				var verifyPassword = req.body.password; 
+				if(!user){
+					console.log(err);
+					res.send({status:500, message: 'Sorry, the user account does not exist. Please check again!', type:'internal'});
 				}
-		});
-	},
+				else if(!isvalidPassword(req.body.password, user.password)){
+					console.log(err);
+					// err = "Incorrect password. Please check again!";
+					res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
+					// res.json(err);
+				}
+			});
+		},
 
-	userLog: function(req, res){
-		console.log('userLog in back AuthController');
-		console.log(req.body);
-	},
+		userLog: function(req, res){
+			console.log('userLog in back AuthController');
+			console.log(req.body);
+		},
 
-	userReg: function(req, res){
-		console.log('userReg in back AuthController');
-		console.log(req.body);
-		var user = req.body;
-		if(! req.body.){
-
+		userReg: function(req, res){
+			console.log('userReg in back AuthController');
+			console.log(req.body);
+			var user = req.body;
+			if(! req.body){}
 		}
+	}
 
 })();

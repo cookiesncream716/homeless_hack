@@ -1,5 +1,5 @@
 var employer = require('./../controllers/employers.js');
-var auth = require('./../controllers/auth.js');
+var auth = require('./../controllers/authController.js');
 
 module.exports = function(app){
 	app.post('/login', function(req, res){
