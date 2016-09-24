@@ -1,4 +1,4 @@
-var mongoose = require('mongooseSchema');
+var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 var EmployerSchema = new mongoose.Schema({

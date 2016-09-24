@@ -1,4 +1,4 @@
-var mongoose = require('User');
+var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 Jobs = new mongoose.Schema({
@@ -24,5 +24,5 @@ Jobs = new mongoose.Schema({
 	timestamps:true
 });
 
-{type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+
 
