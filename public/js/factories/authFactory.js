@@ -2,17 +2,19 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 	var factory = {}; 
 
 	factory.login = function (userInfo, callback){
+
 		$http.post('/login', userInfo).then(function success(response){
 				console.log(response.data.token)
 				AuthTokenFactory.setToken(response.data.token);
 					callback();
+
 			});
 
 
 	};
 
-	factory.register = function(regInfo, callback){
-		console.log(regInfo);
+	factory.register = function(regInfo, type, callback){
+		regInfo.type = type;
 		$http.post('/register', regInfo).then(function success(response){
 				user = response.data.user;
 		        AuthTokenFactory.setToken(response.data.token);
