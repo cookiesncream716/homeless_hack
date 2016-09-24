@@ -37,17 +37,21 @@ module.exports = (function(){
 			var employer = req.body; 
 			var filtemail = xssFilters.inHTMLData(employer.email);
 			Employer.findOne({email : employer.email}, function(err, user){
+				console.log(user);
 				var verifyPassword = req.body.password; 
 				if(!user){
-					console.log(err);
+					console.log('there is an error', err);
 					res.send({status:500, message: 'Sorry, the user account does not exist. Please check again!', type:'internal'});
 				}
-				else if(!isvalidPassword(req.body.password, user.password)){
-					console.log(err);
+				else if(!isValidPassword(user, employer.password)){
+					console.log('there is an error', err);
 					// err = "Incorrect password. Please check again!";
 					res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
-					// res.json(err);
-					}
+				}
+				else{
+					console.log('user is successfully logged in')
+				}
+
 			})
 
 		},

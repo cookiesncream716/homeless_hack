@@ -16,7 +16,4 @@ module.exports = function(app){
 	app.post('/userRegister', function(req, res){
 		auth.userReg(req, res);
 	})
-
-
-
 }
