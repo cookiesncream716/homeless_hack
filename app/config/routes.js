@@ -2,14 +2,14 @@ var employer = require('./../controllers/employers.js');
 var auth = require('./../controllers/auth.js');
 
 module.exports = function(app){
-	app.post('/login:type', function(req, res){
-		if (type == 'employer'){
+	app.post('/login', function(req, res){
+		if (req.body.type == 'employer'){
 			employer.login(req, res);
 		}
 	});
 
-	app.post('/register:type', function(req, res){
-		if (type == 'employer'){
+	app.post('/register', function(req, res){
+		if (req.body.type == 'employer'){
 			employer.register(req, res);
 		}
 	});
