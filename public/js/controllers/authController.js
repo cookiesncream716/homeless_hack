@@ -1,8 +1,9 @@
-myApp.controller('authController', function($scope, authFactory){
+myApp.controller('authController', function($scope, authFactory, $location){
 
 	$scope.login = function(busInfo){
 		authFactory.login(busInfo, function(data){
 			console.log('this is the callback data:',data);
+			$location.url('/home')
 		})
 	}
 	$scope.register = function(){
