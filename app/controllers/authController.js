@@ -41,21 +41,16 @@ module.exports = (function(){
 					console.log(err);
 					res.send({status:500, message: 'Sorry, the user account does not exist. Please check again!', type:'internal'});
 				}
+				else if(!isvalidPassword(req.body.password, user.password)){
+					console.log(err);
+					// err = "Incorrect password. Please check again!";
+					res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
+					// res.json(err);
+					}
 			})
 		}
 	}
 })();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
