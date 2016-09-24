@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Employer = mongoose.model('Employer');
-var timeoutManager = require('./../managers/client_manager')
+var timeoutManager = require('./../managers/timeoutManager.js')
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var bCrypt = require('bcrypt-nodejs');
@@ -35,6 +35,7 @@ module.exports = (function(){
 				console.log('this is the user', user)
 			}) 
 		}, 
+
 		login: function(req, res){
 			var employer = req.body; 
 			var filtemail = xssFilters.inHTMLData(employer.email);
@@ -49,7 +50,8 @@ module.exports = (function(){
 					// err = "Incorrect password. Please check again!";
 					res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
 					// res.json(err);
-					}
+
+				}
 			});
 		},
 
@@ -62,12 +64,10 @@ module.exports = (function(){
 			console.log('userReg in back AuthController');
 			console.log(req.body);
 			var user = req.body;
-			if(! req.body){
-				console.log('hi')
-			}
+
+			if(! req.body){}
 		}
 	}
 
-	
 
 })();
