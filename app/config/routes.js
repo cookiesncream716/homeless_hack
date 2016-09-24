@@ -9,6 +9,12 @@ module.exports = function(app){
 		console.log('made it to the post route!')
 		auth.register(req, res);
 	})
+	app.post('/userLogin', function(req, res){
+
+	})
+	app.post('/userRegister', function(req, res){
+		
+	})
 
 
 }
