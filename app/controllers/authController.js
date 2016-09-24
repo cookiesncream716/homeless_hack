@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Employer = mongoose.model('Employer');
-var User = mongoose.modal('User');
+var User = mongoose.model('User');
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var bCrypt = require('bcrypt-nodejs');
@@ -86,14 +86,27 @@ module.exports = (function(){
 			var user = req.body;
 			User.findOne({username: user.username}, function(err, user1){
 				var verifyPassword = user.password;
-				if(!user){
-					console.log(err);
+				if(!user1){
+					console.log('error finding user', err);
 					res.send({status: 500, message: 'Sorry, the user account does not exist. Please check again.', type: 'internal'});
 				} else if(!isValidPassword(user1, user.password)){
 					console.log(err);
 					res.send({status:500, message:'Invalid password. Please try again.', type:'internal'});
 				} else{
-					console.log('logged in')
+					console.log('user successfully logged in')
+					var token = jwt.sign({
+						_id: user1._id,
+						username: user1.username
+					}, jwtSecret);
+					console.log('this is the user token:', token);
+					res.send({
+						token: token,
+						user: {
+							_id: user1._id,
+							username: user1.username,
+							logged_in: true
+						}
+					});
 				}
 
 			})
@@ -115,6 +128,19 @@ module.exports = (function(){
 			new_user.save().then(function(user){
 				console.log('this is the user', user)
 			})
+			var token = jwt.sign({
+				_id: user._id,
+				username: user.username
+			}, jwtSecret);
+			console.log('this is the user token:', token);
+			res.send({
+				token: token,
+				user: {
+					_id: user._id,
+					username: user.username,
+					loggen_in: true
+				}
+			});
 
 		}
 	}
