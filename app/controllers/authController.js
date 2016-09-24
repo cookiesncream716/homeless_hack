@@ -18,6 +18,14 @@ module.exports = (function(){
 	return{
 		register: function(req, res){
 			console.log(req.body);
+		},
+		userLog: function(req, res){
+			console.log('userLog in back AuthController');
+			console.log(req.body);
+		},
+		userReg: function(req, res){
+			console.log('userReg in back AuthController');
+			console.log(req.body);
 		}
 	}
 })();
