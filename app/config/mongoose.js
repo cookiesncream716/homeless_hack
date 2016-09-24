@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 
-mongoose.connect('mongodb://localhost/mongooseDB');
+mongoose.connect('mongodb://localhost/homeless_hack');
 
 var models_path = __dirname + '/../models';
 
