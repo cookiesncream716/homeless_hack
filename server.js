@@ -7,8 +7,6 @@ var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var expressJwt = require('express-jwt');
 
 
-require('./app/config/mongoose.js');
-require('./app/config/routes.js')(app);
 
 app.use(express.static(path.join(__dirname, './public')));
 // for css
@@ -17,7 +15,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(expressJwt({ secret: jwtSecret })
-          .unless({ path: ['/'] }));
+          .unless({ path: ['/', '/register', '/login'] }));
+
+require('./app/config/mongoose.js');
+require('./app/config/routes.js')(app);
 
 app.listen(8000, function(){
 	console.log('Listening for XXXXX on 8000');

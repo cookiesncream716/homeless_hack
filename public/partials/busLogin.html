@@ -1,18 +1,26 @@
 <div>
-	<h4>Login</h4>
+	<h4>Business Login</h4>
 	<form>
 		<input type="text" ng-model="busInfo.email">
 		<input type="password" ng-model="busInfo.password">
 		<button ng-click="login(busInfo)">Login</button>
 	</form>
-	<h4>Registration</h4>
+	<h4>Business Registration</h4>
 	<form>
-		<input type="email" ng-model='busInfo.email'>
-		<input type="password" ng-model="regInfo.password">
-		<button ng-click="register(regInfo)">Register</button>
+			<!-- Name:  -->
+		<!-- <input type="string" ng-model="busRegInfo.name"> -->
+		<!-- Street: 
+		<input type="string" ng-model="busRegInfo.street">
+		City: 
+		<input type="string" ng-model="busRegInfo.city">
+		Zipcode: 
+		<input type="string" ng-model="busRegInfo.zipCode"> -->
+		Email: 
+		<input type="email" ng-model='busRegInfo.email'>
+		Password: 
+		<input type="password" ng-model="busRegInfo.password">
+		<button ng-click="register()">Register</button>
 	</form>
-
-
 	<h3>User Login</h3>
 		<form>
 			<label for='name'>Name</label>
@@ -33,7 +41,5 @@
 			<input type='password' ng-model='userReg.password'>
 			<button ng-click='userRegistration()'>Register</button>
 		</form>
-
-
 </div>
 
