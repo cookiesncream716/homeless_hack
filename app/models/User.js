@@ -1,3 +1,4 @@
+
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
@@ -10,4 +11,6 @@ var UserSchema = new mongoose.Schema({
 }, {
 	timestamps:true
 });
+
+mongoose.model('User', UserSchema);
 
