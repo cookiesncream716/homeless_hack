@@ -1,5 +1,6 @@
-myApp.factory('authFactory', function($http){
+myApp.factory('authFactory', function($http, AuthTokenFactory){
 	var factory = {}; 
+
 	factory.login = function (userInfo, callback){
         console.log(userInfo);
         $http.post('/login', userInfo)
@@ -11,11 +12,11 @@ myApp.factory('authFactory', function($http){
 
 	factory.register = function(regInfo, callback){
 		console.log(regInfo);
-		$http.post('register', regInfo)
-		.then(function(data){
-			console.log('factory.register callback data', data); 
-			callback(data);
-		})
+		$http.post('/register', regInfo).then(function success(response){
+				user = response.data.user;
+		        AuthTokenFactory.setToken(response.data.token);
+		        return response;
+      })
 	}
 	return factory;
 

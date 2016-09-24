@@ -9,3 +9,4 @@ var UserSchema = new mongoose.Schema({
 }, {
 	timestamps:true
 });
+
