@@ -4,23 +4,40 @@ var timeoutManager = require('./../managers/client_manager')
 
 module.exports = (function(){
 	return{
-		getAll: function(req,res){
-			Employer.find({'_employer': req.body._id}, function(err, result){
+		getEmployerJobs: function(req,res){
+			Job.find({'_employer': req.body._id}, function(err, result){
 				if (err){
 					console.log('err');
 				}else{
-					var active = [];
+					var available = [];
 					var completed = [];
+					var employed = [];
 
 					for (var i = 0; i < result.length; i++){
 						if (result[i].available){
 							active.push(result[i]);
 						}else if (result[i].completed){
 							active.push(result[i].completed);
+						}else if (result[i].employed){
+							active.push(result[i].employed);
 						}
 					}
 
-					res.json({'status': true, 'active': active, 'completed': completed});
+					res.json({'status': true, 'available': available, 'completed': completed, 'employed': employed});
+				}
+			})
+		},
+
+		acceptJob: function(req,res){
+			Job.update({_id: req.body.jobID},{
+				'user': req.body.userID,
+				'available': false,
+				'employed': true
+			}, function(err, response){
+				if (err){
+					console.log('update at ' + req.body.jobID + ' failed');
+				}else{
+					res.json({'status': true, 'result': response);
 				}
 			})
 		},
@@ -29,6 +46,7 @@ module.exports = (function(){
 			var jobInfo = req.body;
 			jobInfo.available = true;
 			jobInfo.completed = false;
+			jobInfo.employed = false;
 			jobInfo.reference_states = false;
 
 			var newJob = new Job(jobInfo);
@@ -42,13 +60,17 @@ module.exports = (function(){
 					var identifier = result._id;
 
 					timeoutManager.addTimeout(result._id, elapsedTime, function(){
-						Job.remove({'_id': identifier}, function(err, result){
-							if (err){
-								console.log('err in delete', result_id, err);
-							}else{
-								console.log(identifier + " deleted");
+						Job.find{'_id': identifier}, function(err, result){
+							if (!err && !result.employed){
+								Job.remove({'_id': identifier}, function(err, result){
+									if (err){
+										console.log('err in delete', result_id, err);
+									}else{
+										console.log(identifier + " deleted");
+									}
+								});
 							}
-						}));
+						});	
 					})
 				}
 			});

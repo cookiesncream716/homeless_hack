@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var fs = require('fs');
 
-mongoose.connect('mongodb://localhost/mean_modularized_skelaton');
+mongoose.connect('mongodb://localhost/mongooseDB');
 
 var models_path = __dirname + '/../models';
 

@@ -9,11 +9,9 @@ var JobSchema = new mongoose.Schema({
 	zipcode: {type: String, required: true, unique: false},
 	available: {type: Boolean, required: true, unique: false},
 	completed: {type: Boolean, required: true, unique: false},
+	employed: {type: Boolean, required: true, unique: false},
 	reference_status: {type: Boolean, required: false, unique: false},
-	description:{
-		summary: {type: String, required: false, unique: false},
-		detailed:{type: Boolean, required: false, unique: false},
-	},
+	description: {type: String, required: false, unique: false},
 	expiration:{type: Date, required: false, unique: false},
 	title: {type: String, required: false, unique: false},
 	payment: {type: Number, required: false, unique: false},
