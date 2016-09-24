@@ -32,6 +32,18 @@ module.exports = (function(){
 			new_employer.save().then(function(user){
 				console.log('this is the user', user)
 			}) 
+			var token = jwt.sign({
+				_id: user._id,
+				email: user.email,
+			}, jwtSecret);
+			console.log('this is the token:', token);
+			res.send({
+				token: token,
+				user: {
+					_id: user._id, 
+					email: user.email, 
+					logged_in: true}
+			});
 		}, 
 		login: function(req, res){
 			var employer = req.body; 
@@ -50,6 +62,18 @@ module.exports = (function(){
 				}
 				else{
 					console.log('user is successfully logged in')
+					var token = jwt.sign({
+						_id: user._id,
+						email: user.email,
+					}, jwtSecret);
+					console.log('this is the token:', token);
+					res.send({
+						token: token,
+						user: {
+							_id: user._id, 
+							email: user.email, 
+							logged_in: true}
+					});
 				}
 
 			})

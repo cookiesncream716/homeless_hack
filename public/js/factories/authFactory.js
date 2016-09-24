@@ -8,8 +8,8 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 			// callback(data);
    //      });
 		$http.post('/login', userInfo).then(function success(response){
-				// console.log(response.data.token)
-				// AuthTokenFactory.setToken(response.data.token);
+				console.log(response.data.token)
+				AuthTokenFactory.setToken(response.data.token);
 				return response;
 			});
 
@@ -18,12 +18,10 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 	factory.register = function(regInfo, callback){
 		console.log(regInfo);
 		$http.post('/register', regInfo).then(function success(response){
-
 				user = response.data.user;
 		        AuthTokenFactory.setToken(response.data.token);
 		        return response;
 			})
-
 	};
 	factory.userLogin = function(info, callback){
 		console.log(info);
