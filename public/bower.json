@@ -1,0 +1,21 @@
+{
+  "name": "public",
+  "homepage": "https://github.com/cookiesncream716/homeless_hack",
+  "authors": [
+    "Andrew Yeung <andrewhyeung@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8"
+  }
+}
