@@ -18,10 +18,25 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 	factory.register = function(regInfo, callback){
 		console.log(regInfo);
 		$http.post('/register', regInfo).then(function success(response){
+
 				user = response.data.user;
 		        AuthTokenFactory.setToken(response.data.token);
 		        return response;
 			})
+
+	};
+	factory.userLogin = function(info, callback){
+		console.log(info);
+		$http.post('/userLogin', info).success(function(output){
+			console.log('userLogin callback in factory')
+		})
+	}
+	factory.userRegister = function(info, callback){
+		console.log(info);
+		$http.post('/userRegister', info).success(function(output){
+			console.log('userRegister callback in factory')
+		})
+
 	}
 	return factory;
 

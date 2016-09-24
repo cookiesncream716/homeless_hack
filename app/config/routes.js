@@ -9,4 +9,14 @@ module.exports = function(app){
 
 		auth.register(req, res);
 	})
+
+	app.post('/userLogin', function(req, res){
+		auth.userLog(req, res);
+	})
+	app.post('/userRegister', function(req, res){
+		auth.userReg(req, res);
+	})
+
+
+
 }

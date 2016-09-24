@@ -17,6 +17,7 @@ var isValidPassword = function(user, password){
 module.exports = (function(){
 	return{
 		register: function(req, res){
+
 			var employer = req.body
 			if(!employer.email || !employer.password){
 				console.log('sending 400 message');
@@ -48,6 +49,16 @@ module.exports = (function(){
 					// res.json(err);
 					}
 			})
+
+		},
+		userLog: function(req, res){
+			console.log('userLog in back AuthController');
+			console.log(req.body);
+		},
+		userReg: function(req, res){
+			console.log('userReg in back AuthController');
+			console.log(req.body);
+
 		}
 	}
 })();
