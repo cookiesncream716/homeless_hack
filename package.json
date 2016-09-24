@@ -1,5 +1,33 @@
 {
-	"name": "",
-	"dependencies":{}
-
+  "name": "homeless_hack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cookiesncream716/homeless_hack.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cookiesncream716/homeless_hack/issues"
+  },
+  "homepage": "https://github.com/cookiesncream716/homeless_hack#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.14.1",
+    "cors": "^2.7.1",
+    "express": "^4.13.3",
+    "express-jwt": "^3.3.0",
+    "jsonwebtoken": "^5.4.1",
+    "mongoose": "^4.2.10",
+    "mongoose-unique-validator": "^1.0.2",
+    "xss-filters": "^1.2.6"
+  }
 }
+
