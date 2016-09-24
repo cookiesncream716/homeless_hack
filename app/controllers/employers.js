@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var Example = mongoose.model('Example');
+var Employer = mongoose.model('Employer');
 
 module.exports = (function(){
 	return{
 		create: function(req,res){
-
+			var employerInfo = req.body;
 		}
 	}
 })();
