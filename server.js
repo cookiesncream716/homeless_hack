@@ -6,8 +6,6 @@ var bodyParser = require('body-parser');
 var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var expressJwt = require('express-jwt');
 
-
-
 app.use(express.static(path.join(__dirname, './public')));
 // for css
 app.use(cors());
