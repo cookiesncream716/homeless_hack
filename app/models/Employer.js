@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
 var EmployerSchema = new mongoose.Schema({
+
 	name: {type: String, required: true, unique: true},
 	email: {type: String, required: true, unique: true},
 	city: {type: String, required: true, unique: false},
@@ -19,3 +20,4 @@ var EmployerSchema = new mongoose.Schema({
 });
 
 mongoose.model('Employer', EmployerSchema);
+

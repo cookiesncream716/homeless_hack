@@ -24,4 +24,6 @@ var JobSchema = new mongoose.Schema({
 	timestamps:true
 });
 
+
 mongoose.model('Job', JobSchema);
+

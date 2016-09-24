@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> b43fee91727b205d9f373b33045dc419c6899cfc
 var mongoose = require('mongoose');
 var uniqueValidator = require('mongoose-unique-validator');
 
@@ -12,3 +16,4 @@ var UserSchema = new mongoose.Schema({
 });
 
 mongoose.model('User', UserSchema);
+
