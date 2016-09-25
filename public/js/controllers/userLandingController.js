@@ -23,7 +23,6 @@ myApp.controller('userLandingController', function($scope, jobsFactory, authFact
 			}
 		});
 	}
-
 	function initControllerScope(){
 		authFactory.get_user(function(user){
 			$scope.user = user;
