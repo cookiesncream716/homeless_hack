@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Job = mongoose.model('Job');
-var timeoutManager = require('./../managers/client_manager')
+var timeoutManager = require('./../managers/timeoutManager')
 
 module.exports = (function(){
 	return{
@@ -37,7 +37,7 @@ module.exports = (function(){
 				if (err){
 					console.log('update at ' + req.body.jobID + ' failed');
 				}else{
-					res.json({'status': true, 'result': response);
+					res.json({'status': true, 'result': response});
 				}
 			})
 		},
@@ -60,9 +60,13 @@ module.exports = (function(){
 					var identifier = result._id;
 
 					timeoutManager.addTimeout(result._id, elapsedTime, function(){
-						Job.find{'_id': identifier}, function(err, result){
+						
+						Job.find({'_id': identifier}, function(err, result){
+							
 							if (!err && !result.employed){
+								
 								Job.remove({'_id': identifier}, function(err, result){
+									
 									if (err){
 										console.log('err in delete', result_id, err);
 									}else{
@@ -74,6 +78,26 @@ module.exports = (function(){
 					})
 				}
 			});
+		},
+
+		getJobsForUser: function(req, res){
+			var sort = req.params.sort;
+			var city = req.params.city;
+			var asc = req.params.asc;
+
+			if (asc){
+				sort = "-" + sort
+			}
+
+			Jobs.find({'city': city}).sort(sort).exec(function(err, result){
+				if (err){
+					console.log('err', err);
+					res.json({'status': false});
+				}else{
+					res.json({'status': true, 'jobs': jobs});
+				}
+			});
+
 		}
 	}
 })();
