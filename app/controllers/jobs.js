@@ -5,25 +5,27 @@ var timeoutManager = require('./../managers/timeoutManager')
 module.exports = (function(){
 	return{
 		getEmployerJobs: function(req,res){
-			Job.find({'_employer': req.body._id}, function(err, result){
+			console.log(req.params.id)
+			Job.find({'_employer': req.params.id}, function(err, result){
 				if (err){
 					console.log('err');
 				}else{
-					var available = [];
-					var completed = [];
-					var employed = [];
+					console.log('found jobs', result)
+					// var available = [];
+					// var completed = [];
+					// var employed = [];
 
-					for (var i = 0; i < result.length; i++){
-						if (result[i].available){
-							active.push(result[i]);
-						}else if (result[i].completed){
-							active.push(result[i].completed);
-						}else if (result[i].employed){
-							active.push(result[i].employed);
-						}
-					}
-
-					res.json({'status': true, 'available': available, 'completed': completed, 'employed': employed});
+					// for (var i = 0; i < result.length; i++){
+					// 	if (result[i].available){
+					// 		active.push(result[i]);
+					// 	}else if (result[i].completed){
+					// 		active.push(result[i].completed);
+					// 	}else if (result[i].employed){
+					// 		active.push(result[i].employed);
+					// 	}
+					// }
+					res.json(result)
+					// res.json({'status': true, 'available': available, 'completed': completed, 'employed': employed});
 				}
 			})
 		},
@@ -43,14 +45,14 @@ module.exports = (function(){
 		},
 
 		create: function(req, res){
-			console.log('in create jobs')
-			var jobInfo = req.body;
-			jobInfo.available = true;
-			jobInfo.completed = false;
-			jobInfo.employed = false;
-			jobInfo.reference_states = false;
+			console.log('in create jobs', req.body)
+			// var jobInfo = req.body;
+			// jobInfo.available = true;
+			// jobInfo.completed = false;
+			// jobInfo.employed = false;
+			// jobInfo.reference_states = false;
 
-			var newJob = new Job(jobInfo);
+			var newJob = new Job(req.body);
 			newJob.save(function(err, result){
 				if(err){
 					console.log("You got errors??", err);
@@ -77,8 +79,6 @@ module.exports = (function(){
 					res.json(result);
 				}
 			});
-			// console.log('finished')
-			// res.json(result);
 		}
 	}
 })();

@@ -26,6 +26,9 @@ module.exports = function(app){
 	app.post('/jobs', function(req, res){
 		// console.log('in routes')
 		jobs.create(req, res);
+	});
+	app.post('/jobs/:id', function(req, res){
+		jobs.getEmployerJobs(req, res);
 	})
 
 }
