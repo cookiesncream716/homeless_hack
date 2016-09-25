@@ -84,17 +84,38 @@ module.exports = (function(){
 			var sort = req.params.sort;
 			var city = req.params.city;
 			var asc = req.params.asc;
+			var userID = req.params.userID;
+			var currentJob;
 
+			console.log("THESE ARE THE PARAMS", sort, city, asc, userID);
 			if (asc){
 				sort = "-" + sort
 			}
 
-			Jobs.find({'city': city}).sort(sort).exec(function(err, result){
+			Job.find({'city': city}).sort(sort).exec(function(err, result){
 				if (err){
 					console.log('err', err);
 					res.json({'status': false});
 				}else{
-					res.json({'status': true, 'jobs': jobs});
+					var info = {'status':true};
+
+					for (var i = 0; i < result.length; i++){
+						var job = result[i];
+
+						if (job.employed && job._user == userID){
+							Job.findOne({'_user': userID}).populate('_employer').success(function(err, cJob){
+								if (!err){
+									info.currentJob = cJob;
+									res.json(info);
+								}
+							});
+						}
+
+					}
+
+
+					console.log("INFO", info);
+					res.json(info);
 				}
 			});
 

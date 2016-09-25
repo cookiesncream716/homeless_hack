@@ -21,9 +21,10 @@ module.exports = function(app){
 
 	app.post('/userRegister', function(req, res){
 		auth.userReg(req, res);
+
 	});
 
-	app.get('/jobsForUser/:city/:sort/:asc/', function(req, res){
+	app.get('/jobsForUser/:userID/:city/:sort/:asc/', function(req, res){
 		jobs.getJobsForUser(req, res);
 	});
 }

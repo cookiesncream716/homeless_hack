@@ -1,14 +1,31 @@
-myApp.controller('userLanding', function($scope, jobsFactory, userFactory){
+myApp.controller('userLandingController', function($scope, jobsFactory, authFactory){
 	$scope.user = {};
-	$scope.currentJobs = {};
-	$scope.activeJobs;
+	$scope.currentJob = {};
+	$scope.activeJobs = {};
+	$scope.current = false;
 
-	userFactory.getUser(function(user){
-		$scope.user = user;
-	});
+	$scope.sortInfo = {
+		'type': 'createdAt',
+		'ascending': false
+	}
 
-	jobsFactory.getJobsForUser(function(jobs){
-		$scope.availableJobs = jobs.available;
-		$scope.currentJobs = jobs.currentJobs;
-	})
+	initControllerScope();
+
+	function initControllerScope(){
+		authFactory.get_user(function(user){
+			$scope.user = user;
+
+			jobsFactory.getJobsForUser(user.id, user.city, function(result){
+				console.log(result);
+				if (result.status){
+					$scope.availableJobs = result.jobs;
+
+					if ('currentJob' in result){
+						$scope.currentJob = result.currentJob;
+						$scope.current = true;
+					}
+				}
+			});
+		});
+	}
 });

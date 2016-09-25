@@ -8,12 +8,12 @@ myApp.config(function($routeProvider){
 			: 'partials/busLogin.html'
 		})
 		.when('/userLanding', {
-			controller: 'userController'
+			controller: 'userLandingController',
 			templateUrl
 			: 'partials/userLanding.html'
-		}
+		})
 		.when('/busLanding', {
-			controller: 'busController'
+			controller: 'busController',
 			templateUrl
 			: 'partials/busLanding.html'
 		})

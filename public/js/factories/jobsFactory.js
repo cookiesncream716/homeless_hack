@@ -1,27 +1,27 @@
 myApp.factory('jobsFactory', function($http){
 	var factory = {};
 
-	factory.getJobsForUser = function(city, callback, sort, asc){
+	factory.getJobsForUser = function(userID, city, callback, sort, asc){
 		var aSign;
-
+	
 		if(!sort){
 			sort = "createdAt"
 		}
 
 		if(!asc){
-			aSign = "-" else
+			aSign = "-"
 		}else{
 			aSign = "+"
 		}
 
-		var url = "/jobsForUser/" + '/' + city + '/' sort + "/" + aSign;
+		var url = "/jobsForUser/" + userID + '/' + city + '/' + sort + "/" + aSign; 
+		console.log('URL!!', url)
 		$http.get(url).success(function(result){
-			if(result.status){
-				callback(result.jobs);
-			}
+			console.log(result)
+				callback(result);
 		});
-		}
 		
-	}
-	return factory
-})
+	};
+
+	return factory;
+});

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Employer = mongoose.model('Employer');
 var timeoutManager = require('./../managers/timeoutManager.js')
+
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var bCrypt = require('bcrypt-nodejs');
@@ -17,7 +18,8 @@ var isValidPassword = function(user, password){
 
 module.exports = (function(){
 	return{
-		register: function(req,res){
+		register: function(req, res){
+
 			var employer = req.body
 			if(!employer.email || !employer.password){
 				console.log('sending 400 message');
@@ -25,46 +27,73 @@ module.exports = (function(){
 			}
 			var filtemail = xssFilters.inHTMLData(employer.email);
 			var filtpassword = xssFilters.inHTMLData(employer.password);
-
+			var filtcity = xssFilters.inHTMLData(employer.city);
+			var filtzipCode = xssFilters.inHTMLData(employer.zipCode);
+			var filtstreet = xssFilters.inHTMLData(employer.street);
+			var filtname = xssFilters.inHTMLData(employer.name);
 			var new_employer = new Employer({
 				email: filtemail, 
-				password: createHash(filtpassword)
+				password: createHash(filtpassword), 
+				city: filtcity, 
+				zipCode: filtzipCode, 
+				street: filtstreet, 
+				name: filtname
 			});
-
-			Employer.save().then(function(user){
-				console.log('this is the user', user)
-			});
-		},
-
+			console.log(new_employer)
+			new_employer.save().then(function(user){
+				console.log('this is the business', user)
+				var token = jwt.sign({
+					_id: user._id,
+					email: user.email,
+					name: user.name
+				}, jwtSecret);
+				console.log('this is the token:', token);
+				res.send({
+					token: token,
+					user: {
+						_id: user._id, 
+						email: user.email, 
+						logged_in: true}
+				});
+			}) 
+		}, 
 		login: function(req, res){
 			var employer = req.body; 
 			var filtemail = xssFilters.inHTMLData(employer.email);
 			Employer.findOne({email : employer.email}, function(err, user){
+				console.log(user);
 				var verifyPassword = req.body.password; 
 				if(!user){
-					console.log(err);
+					console.log('there is an error', err);
 					res.send({status:500, message: 'Sorry, the user account does not exist. Please check again!', type:'internal'});
 				}
-				else if(!isvalidPassword(req.body.password, user.password)){
-					console.log(err);
+				else if(!isValidPassword(user, employer.password)){
+					console.log('there is an error', err);
 					// err = "Incorrect password. Please check again!";
 					res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
-					// res.json(err);
 				}
-			});
-		},
+				else{
+					console.log('business is successfully logged in')
+					var token = jwt.sign({
+						_id: user._id,
+						email: user.email,
+						name: user.name
+					}, jwtSecret);
+					console.log('this is the token:', token);
+					res.send({
+						token: token,
+						user: {
+							_id: user._id, 
+							email: user.email, 
+							logged_in: true}
+					});
+				}
 
-		userLog: function(req, res){
-			console.log('userLog in back AuthController');
-			console.log(req.body);
-		},
+			})
 
-		userReg: function(req, res){
-			console.log('userReg in back AuthController');
-			console.log(req.body);
-			var user = req.body;
-			if(! req.body){}
 		}
+
 	}
+
 
 })();
