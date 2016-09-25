@@ -10,13 +10,13 @@ myApp.config(function($routeProvider){
 		.when('/userLanding', {
 			controller: 'userController'
 			templateUrl
-			: 'partials/busLogin.html'
+			: 'partials/userLanding.html'
 		}
-		.when('/employerLanding')
-			controller: 'userController'
+		.when('/busLanding', {
+			controller: 'busController'
 			templateUrl
-			: 'partials/busLogin.html'
-		}
+			: 'partials/busLanding.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		})

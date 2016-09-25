@@ -1,0 +1,131 @@
+/*
+	green: #AFD5AA;
+	offwhite: #F0F2EF;
+	blue: #78E0DC;
+	brown: #5C5346;
+	silver: #89890;
+*/
+
+body{
+	font-family: Trebuchet MS;
+}
+
+#container{
+	background-color:#F0F2EF;
+}
+
+#header{
+	padding-top:7px;
+	font-size:30px;
+	background-color: #78E0DC;
+}
+
+#main_content{
+	text-align: center;
+}
+
+#left{
+	width:500px;
+	margin-right:50px;
+}
+
+
+.jobs{
+	height:100px;
+	background-color: #78E0DC;
+	overflow: auto;
+	color:black;
+}
+
+h3{
+	font-size:40px;
+}
+#right{
+	border:2px solid black;
+	border-radius: 5px;
+}
+
+.form{
+	margin-left:100px;
+}
+/*start of the form*/
+ul{
+	list-style: none;
+	padding:0px;
+	margin:0px;
+}
+
+.register_class{
+	display: block;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	margin-bottom: 40px;
+	padding-left:2px;
+	border-radius:5px 5px 0px 0px;
+	height:60px;
+	width:300px;
+	background-color: #78E0DC;
+	color:white;
+
+}
+
+label{
+	display: block;
+	float:left;
+	height:15px;
+/*	padding:3px;*/
+	overflow: hidden;
+	margin-top: -13px;
+	background-color: #5C5346;
+	border:none;
+}
+
+
+.register_button{
+	margin-left:230px;
+	border-radius: 2px;
+}
+
+.register_class input[type="text"]{
+	width:100%;
+	display:block;
+	border:none;
+	background-color: #78E0DC;
+	height:50px;
+	font-size:20px;
+
+}
+
+.register_class label{
+	background-color: #5C5346;
+}
+.reg_sign{
+	background-color: #5C5346;
+	display:block;
+	text-align: center;
+	/*color:#FF3B3F;*/
+	margin-bottom:-25px;
+	margin-left:-3px;
+	margin-right:-1px;
+	font-size:10px;
+	border:1px solid black;
+	padding-left:3px;
+	padding-right:3px;
+}
+
+
+/*end of the form*/
+
+
+
+
+
+#left, #right{
+	vertical-align: top;
+	display: inline-block;
+	width:500px;
+	text-align: center;
+}
+

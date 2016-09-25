@@ -1,5 +1,5 @@
 var manager = {
-	timeouts: {};
+	timeouts: {}
 };
 
 manager.addTimeout = function(name, expire, callback){
