@@ -13,7 +13,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(expressJwt({ secret: jwtSecret })
+<<<<<<< HEAD
           .unless({ path: ['/', '/register', '/login', '/userLogin', '/userRegister', '/jobs', /^\/jobs\/.*/] }));
+=======
+          .unless({ path: ['/', '/register','/login', '/acceptJob', '/jobs', '/userLanding', '/userLogin', '/userRegister', /^\/jobsForUser\/.*/] }));
+>>>>>>> b80d07a3ce4f44b90a7dd42c6d3e48324f5e7601
 
 require('./app/config/mongoose.js');
 require('./app/config/routes.js')(app);

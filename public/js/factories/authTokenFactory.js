@@ -16,6 +16,7 @@ myApp.factory('AuthTokenFactory', function($window){
     function setToken(token){
       if(token){
         store.setItem(key, token);
+        console.log(store);
       } else {
         store.removeItem(key);
       }
