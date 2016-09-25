@@ -1,5 +1,4 @@
 {
-
   "name": "homeless_hack",
   "version": "1.0.0",
   "description": "",
@@ -31,4 +30,3 @@
     "xss-filters": "^1.2.6"
   }
 }
-
