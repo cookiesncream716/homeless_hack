@@ -29,6 +29,9 @@ module.exports = function(app){
 	});
 	app.post('/jobs/:id', function(req, res){
 		jobs.getEmployerJobs(req, res);
+	});
+	app.get('/jobs/:id', function(req, res){
+		jobs.completedJob(req, res)
 	})
 
 }

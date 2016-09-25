@@ -6,7 +6,7 @@ myApp.controller('businessController', function($scope, authFactory, jobsFactory
 	});
 	jobsFactory.biz_getJobs($scope.biz_info.id, function(data){
 		$scope.currentJobs = data
-	})
+	});
 	$scope.addJob = function(){
 		console.log('clicked add Job');
 		console.log($scope.newJob);
@@ -14,5 +14,15 @@ myApp.controller('businessController', function($scope, authFactory, jobsFactory
 			console.log('businessController returned from jobsFactory', data)
 			$scope.newJob = {}
 		});
+	};
+	$scope.completed = function(id){
+		console.log('job id:' + id);
+		jobsFactory.completedJob(id, function(data){
+			console.log('in businessController', data)
+			$scope.currentJobs = data
+			jobsFactory.biz_getJobs($scope.biz_info.id, function(data){
+				$scope.currentJobs = data
+			})
+		})
 	}
 })

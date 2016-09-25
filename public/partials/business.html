@@ -10,12 +10,14 @@
 				<div class='content'>
 					<h3>Current Job Listings</h3>
 					<div ng-repeat='job in currentJobs'>
-						<div ng-if='job.available==true' class='jobs'>
-							<h4>Job: {{job.title}}</h4>
-							<p>Description: {{job.description}}</p>
-							<p>Payment: {{job.payment}}</p>
-							<p>Location: {{job.street}}, {{job.city}}</p>
-							<p>Posted: {{job.createdAt | date: 'MMMM dd, yyyy'}}</p>
+						<div ng-if='job.completed==false'>
+							<div ng-if='job.employed==false' class='jobs'>
+								<h4>Job: {{job.title}}</h4>
+								<p>Description: {{job.description}}</p>
+								<p>Payment: {{job.payment}}</p>
+								<p>Location: {{job.street}}, {{job.city}}</p>
+								<p>Posted: {{job.createdAt | date: 'MMMM dd, yyyy'}}</p>
+							</div>
 						</div>
 					</div>
 					<br>
@@ -72,6 +74,7 @@
 							<h4>Job: {{job.title}}</h4>
 							<p>Description: {{job.description}}</p>
 							<p>Location: {{job.street}}, {{job.city}}&nbsp&nbsp&nbsp&nbsp&nbspPayment: {{job.payment}}&nbsp&nbsp&nbsp&nbsp&nbspPosted: {{job.createdAt | date: 'MMMM dd, yyyy'}}</p>
+							<button ng-click='completed(job._id)'>Completed</button>
 						</div>
 					</div>
 				</div>

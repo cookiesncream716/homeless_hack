@@ -13,6 +13,15 @@ myApp.factory('jobsFactory', function($http, AuthTokenFactory){
 			console.log(output)
 			callback(output)
 		})
+	};
+	factory.completedJob = function(id, callback){
+		console.log('factory', id)
+		$http.get('/jobs/' + id).success(function(output){
+			console.log('job marked as completed');
+			// factory.biz_getJobs(id, callback)
+			// console.log()
+			callback()
+		})
 	}
 	return factory;
 })

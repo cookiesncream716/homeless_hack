@@ -79,6 +79,20 @@ module.exports = (function(){
 					res.json(result);
 				}
 			});
+		},
+		completedJob: function(req, res){
+			console.log('in jobs.js ' + req.params.id)
+			Job.findOne({_id: req.params.id}, function(err, job){
+				if(err){
+					console.log('error finding job to update as completed', err)
+					res.json(err)
+				} else{
+					console.log('found job', job)
+					Job.update({_id: req.params.id}, {completed: true, employed: false, available: false}, function(err, product){
+						res.json(product)
+					})
+				}
+			})
 		}
 	}
 })();
