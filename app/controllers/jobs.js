@@ -1,29 +1,31 @@
 var mongoose = require('mongoose');
 var Job = mongoose.model('Job');
-var timeoutManager = require('./../managers/client_manager')
+var timeoutManager = require('./../managers/timeoutManager')
 
 module.exports = (function(){
 	return{
 		getEmployerJobs: function(req,res){
-			Job.find({'_employer': req.body._id}, function(err, result){
+			console.log(req.params.id)
+			Job.find({'_employer': req.params.id}, function(err, result){
 				if (err){
 					console.log('err');
 				}else{
-					var available = [];
-					var completed = [];
-					var employed = [];
+					console.log('found jobs', result)
+					// var available = [];
+					// var completed = [];
+					// var employed = [];
 
-					for (var i = 0; i < result.length; i++){
-						if (result[i].available){
-							active.push(result[i]);
-						}else if (result[i].completed){
-							active.push(result[i].completed);
-						}else if (result[i].employed){
-							active.push(result[i].employed);
-						}
-					}
-
-					res.json({'status': true, 'available': available, 'completed': completed, 'employed': employed});
+					// for (var i = 0; i < result.length; i++){
+					// 	if (result[i].available){
+					// 		active.push(result[i]);
+					// 	}else if (result[i].completed){
+					// 		active.push(result[i].completed);
+					// 	}else if (result[i].employed){
+					// 		active.push(result[i].employed);
+					// 	}
+					// }
+					res.json(result)
+					// res.json({'status': true, 'available': available, 'completed': completed, 'employed': employed});
 				}
 			})
 		},
@@ -37,19 +39,20 @@ module.exports = (function(){
 				if (err){
 					console.log('update at ' + req.body.jobID + ' failed');
 				}else{
-					res.json({'status': true, 'result': response);
+					res.json({'status': true, 'result': response});
 				}
 			})
 		},
 
 		create: function(req, res){
-			var jobInfo = req.body;
-			jobInfo.available = true;
-			jobInfo.completed = false;
-			jobInfo.employed = false;
-			jobInfo.reference_states = false;
+			console.log('in create jobs', req.body)
+			// var jobInfo = req.body;
+			// jobInfo.available = true;
+			// jobInfo.completed = false;
+			// jobInfo.employed = false;
+			// jobInfo.reference_states = false;
 
-			var newJob = new Job(jobInfo);
+			var newJob = new Job(req.body);
 			newJob.save(function(err, result){
 				if(err){
 					console.log("You got errors??", err);
@@ -59,19 +62,21 @@ module.exports = (function(){
 					var elapsedTime = Math.abs(result.expiration - now);
 					var identifier = result._id;
 
-					timeoutManager.addTimeout(result._id, elapsedTime, function(){
-						Job.find{'_id': identifier}, function(err, result){
-							if (!err && !result.employed){
-								Job.remove({'_id': identifier}, function(err, result){
-									if (err){
-										console.log('err in delete', result_id, err);
-									}else{
-										console.log(identifier + " deleted");
-									}
-								});
-							}
-						});	
-					})
+					// timeoutManager.addTimeout(result._id, elapsedTime, function(){
+					// 	Job.find({'_id': identifier}, function(err, result){
+					// 		if (!err && !result.employed){
+					// 			Job.remove({'_id': identifier}, function(err, result){
+					// 				if (err){
+					// 					console.log('err in delete', result_id, err);
+					// 				}else{
+					// 					console.log(identifier + " deleted");
+					// 				}
+					// 			});
+					// 		}
+					// 	});	
+					// })
+					console.log('finished')
+					res.json(result);
 				}
 			});
 		}

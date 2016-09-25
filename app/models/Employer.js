@@ -13,9 +13,9 @@ var EmployerSchema = new mongoose.Schema({
 		 index: '2d'
 	},
 	street: {type: String, required: true, unique: false},
-
 }, {
 	timestamps:true
+
 });
 
 mongoose.model('Employer', EmployerSchema);

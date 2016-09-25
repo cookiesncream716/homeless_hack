@@ -41,20 +41,21 @@ module.exports = (function(){
 			});
 			console.log(new_employer)
 			new_employer.save().then(function(user){
-				console.log('this is the user', user)
+				console.log('this is the business', user)
+				var token = jwt.sign({
+					_id: user._id,
+					email: user.email,
+					name: user.name
+				}, jwtSecret);
+				console.log('this is the token:', token);
+				res.send({
+					token: token,
+					user: {
+						_id: user._id, 
+						email: user.email, 
+						logged_in: true}
+				});
 			}) 
-			var token = jwt.sign({
-				_id: user._id,
-				email: user.email,
-			}, jwtSecret);
-			console.log('this is the token:', token);
-			res.send({
-				token: token,
-				user: {
-					_id: user._id, 
-					email: user.email, 
-					logged_in: true}
-			});
 		}, 
 		login: function(req, res){
 			var employer = req.body; 
@@ -72,89 +73,27 @@ module.exports = (function(){
 					res.send({status:500, message: 'Invalid password. Please check again!', type:'internal'});
 				}
 				else{
-					console.log('user is successfully logged in')
+					console.log('business is successfully logged in')
 					var token = jwt.sign({
 						_id: user._id,
 						email: user.email,
+						name: user.name
 					}, jwtSecret);
 					console.log('this is the token:', token);
 					res.send({
 						token: token,
 						user: {
 							_id: user._id, 
-							email: user.email, 
+							email: user.email,
+							name: user.name,
 							logged_in: true}
 					});
 				}
 
 			})
 
-		},
-		userLog: function(req, res){
-			console.log('userLog in back AuthController');
-			console.log(req.body);
-			var user = req.body;
-			User.findOne({username: user.username}, function(err, user1){
-				var verifyPassword = user.password;
-				if(!user1){
-					console.log('error finding user', err);
-					res.send({status: 500, message: 'Sorry, the user account does not exist. Please check again.', type: 'internal'});
-				} else if(!isValidPassword(user1, user.password)){
-					console.log(err);
-					res.send({status:500, message:'Invalid password. Please try again.', type:'internal'});
-				} else{
-					console.log('user successfully logged in')
-					var token = jwt.sign({
-						_id: user1._id,
-						username: user1.username
-					}, jwtSecret);
-					console.log('this is the user token:', token);
-					res.send({
-						token: token,
-						user: {
-							_id: user1._id,
-							username: user1.username,
-							logged_in: true
-						}
-					});
-				}
-
-			})
-		},
-		userReg: function(req, res){
-			console.log('userReg in back AuthController');
-			console.log(req.body);
-			var user = req.body;
-
-			if(!user.username || !user.password || !user.city || !user.name){
-				console.log('user did not complete enough fields')
-				return res.status(400).end('Must fill out username, password, city and name');
-			}
-			// var filtemail = xssFilters.inHTMLData(user.email);
-			var filtpassword = xssFilters.inHTMLData(user.password);
-			var new_user = new User({
-				// email: filtemail, 
-				password: createHash(filtpassword)
-			});
-			new_user.save().then(function(user){
-				console.log('this is the user', user)
-			})
-			var token = jwt.sign({
-				_id: user._id,
-				username: user.username
-			}, jwtSecret);
-			console.log('this is the user token:', token);
-			res.send({
-				token: token,
-				user: {
-					_id: user._id,
-					username: user.username,
-					loggen_in: true
-				}
-			});
-
-
 		}
+
 	}
 
 
