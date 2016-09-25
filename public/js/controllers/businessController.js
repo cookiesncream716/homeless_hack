@@ -14,7 +14,10 @@ myApp.controller('businessController', function($scope, authFactory, jobsFactory
 		// info._employer = $scope.biz_info.id;
 		jobsFactory.biz_createJob($scope.newJob, function(data){
 			console.log('businessController returned from jobsFactory', data)
-			$scope.newJob = {}
+			jobsFactory.biz_getJobs($scope.biz_info.id, function(jobs){
+				$scope.newJob = {}
+				$scope.currentJobs = jobs;
+			})
 		});
 	};
 	$scope.completed = function(id){

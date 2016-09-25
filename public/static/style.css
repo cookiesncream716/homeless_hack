@@ -18,7 +18,7 @@ body{
 	background-color:#F0F2EF;
 }
 
-#header{
+.header{
 	font-size:50px;
 	background-color: #78E0DC;
 	text-align: center;
@@ -159,7 +159,6 @@ label{
 	text-align: center;
 }
 
-
 .button2{
 	height:40px;
 	width:80px;
@@ -168,12 +167,18 @@ label{
 	color:white;
 }
 
-
-
 button:hover{
 	background-color:#78E0DC ;
 	color:white;
 }
-
-
-
+.avail_jobs{
+	padding: 25px;
+	min-height:100px;
+	background-color: #78E0DC;
+	overflow: auto;
+	color:black;
+	margin-bottom: 40px;
+}
+.bold{
+	font-weight: bold;
+}

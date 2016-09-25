@@ -23,7 +23,7 @@ myApp.factory('jobsFactory', function($http){
 		
 	};
 
-	factory.getCompletedJobs = function(userId, callback_{
+	factory.getCompletedJobs = function(userId, callback){
 		var info = {
 			'userID': userID
 		}
@@ -31,7 +31,7 @@ myApp.factory('jobsFactory', function($http){
 		$http.getCompletedJobs(info).success(function(completedJobs){
 
 		})
-	});
+	};
 
 	factory.biz_createJob = function(jobInfo, callback){
 		console.log(jobInfo);
