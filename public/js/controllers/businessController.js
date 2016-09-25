@@ -1,4 +1,4 @@
-myApp.controller('businessController', function($scope, authFactory, jobsFactory){
+myApp.controller('businessController', function($scope, $location, authFactory, jobsFactory){
 	authFactory.get_business(function(data){
 		// console.log(data)
 		$scope.biz_info = data;
@@ -28,6 +28,13 @@ myApp.controller('businessController', function($scope, authFactory, jobsFactory
 			jobsFactory.biz_getJobs($scope.biz_info.id, function(data){
 				$scope.currentJobs = data
 			})
+		})
+	};
+	$scope.logout = function(){
+		console.log('logout')
+		authFactory.logout(function(){
+			console.log('finished logout')
+			$location.path('/');
 		})
 	}
 })

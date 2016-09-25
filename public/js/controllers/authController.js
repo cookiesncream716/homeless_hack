@@ -3,6 +3,7 @@ myApp.controller('authController', function($scope, authFactory, $location){
 	$scope.biz_reg = false;
 	$scope.employeeLogin = true;
 	$scope.biz_login = true;
+	$scope.userInfo = {}
 	$scope.showRegBiz = function(){
 		$scope.biz_reg = true;
 		$scope.employeeLogin = false;
@@ -26,7 +27,8 @@ myApp.controller('authController', function($scope, authFactory, $location){
 		})
 	}
 	$scope.userLogin = function(){
-		// console.log($scope.userInfo)
+		console.log('user clicked login')
+		console.log('user', $scope.userInfo)
 		authFactory.userLogin($scope.userInfo, function(data){
 			// console.log('userLogin callback info controller')
 			// console.log(data)

@@ -53,6 +53,13 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 		console.log('USER:', user)
 		callback(user)
 	};
+	factory.logout = function(callback){
+		user = null;
+		business = null;
+		console.log('Authfactory logout')
+		AuthTokenFactory.setToken()
+		callback()
+	}
 	return factory;
 
 })

@@ -44,4 +44,10 @@ myApp.controller('userLandingController', function($scope, jobsFactory, $locatio
 			});
 		});
 	}
+	$scope.logout = function(){
+		console.log('logout')
+		authFactory.logout(function(){
+			$location.path('/')
+		})
+	}
 });
