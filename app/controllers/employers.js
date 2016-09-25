@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Employer = mongoose.model('Employer');
 var timeoutManager = require('./../managers/timeoutManager.js')
+
 var jwt = require('jsonwebtoken');
 var jwtSecret = 'aasjidfjiodsjfiosajfs';
 var bCrypt = require('bcrypt-nodejs');
@@ -17,7 +18,7 @@ var isValidPassword = function(user, password){
 
 module.exports = (function(){
 	return{
-				register: function(req, res){
+		register: function(req, res){
 
 			var employer = req.body
 			if(!employer.email || !employer.password){
@@ -26,10 +27,19 @@ module.exports = (function(){
 			}
 			var filtemail = xssFilters.inHTMLData(employer.email);
 			var filtpassword = xssFilters.inHTMLData(employer.password);
+			var filtcity = xssFilters.inHTMLData(employer.city);
+			var filtzipCode = xssFilters.inHTMLData(employer.zipCode);
+			var filtstreet = xssFilters.inHTMLData(employer.street);
+			var filtname = xssFilters.inHTMLData(employer.name);
 			var new_employer = new Employer({
 				email: filtemail, 
-				password: createHash(filtpassword)
+				password: createHash(filtpassword), 
+				city: filtcity, 
+				zipCode: filtzipCode, 
+				street: filtstreet, 
+				name: filtname
 			});
+			console.log(new_employer)
 			new_employer.save().then(function(user){
 				console.log('this is the user', user)
 			}) 

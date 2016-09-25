@@ -26,6 +26,9 @@ module.exports = (function(){
 			}
 			var filtemail = xssFilters.inHTMLData(employer.email);
 			var filtpassword = xssFilters.inHTMLData(employer.password);
+			var filtcity = xssFilters.inHTMLData(employer.city);
+			var filtzipCode = xssFilters.inHTMLData(employer.zipCode);
+			var filtstreet = xssFilters.inHTMLData(employer.street);
 			var new_employer = new Employer({
 				email: filtemail, 
 				password: createHash(filtpassword)
