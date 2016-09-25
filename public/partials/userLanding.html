@@ -5,8 +5,8 @@
 	<div id = 'currentJob' ng-if = 'current'>
 		<h4>Current Job Taken</h4>
 		<h2>{{currentJob.title}}</h2>
-		<p class = 'address'>{{currentJob.address}}</p>
-		<p class = 'descript'>{{currentJob.summary}</p>
+		<p>Address: {{currentJob.street}} {{currentJob.city}}, {{currentJob.zipcode}}
+		<p class = 'descript'>{{currentJob.description}}</p>
 	</div>
 
 	<div id = 'allJobs'>
@@ -15,11 +15,13 @@
 		<div ng-repeat = "job in jobs">
 			<h2>Title: {{job.title}}</h2>
 			<p>Created at: {{job.createdAt}}</p>
+			<p>Address: {{job.street}} {{job.city}}, {{job.zipcode}}</p>
 			<p>Description: {{job.description}}</p>
 			<button ng-click = "job.accept = true">Accept Job</button>
 			<div ng-show = "job.accept">
-				<p>Employer Name</p>
-				<p>Employer Contact Info</p>
+				<p>Employer: {{job._employer.name}}</p>
+				<p>Email: {{job._employer.email}}</p>
+				{{job._employer}}
 				<button ng-click = "confirmJob(job)">Confirm</button>
 			</div>
 		</div>

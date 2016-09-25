@@ -14,7 +14,13 @@ myApp.controller('userLandingController', function($scope, jobsFactory, authFact
 	$scope.confirmJob = function(cJob){
 		console.log("look at cJob", cJob)
 		jobsFactory.acceptJob(cJob, $scope.user.id, function(){
-
+			for (var i = 0; i < $scope.jobs.length; i++){
+				if ($scope.jobs[i]._id == cJob._id){
+					$scope.currentJob = $scope.jobs[i];
+					$scope.jobs.splice(i, 1);
+					$scope.current = true;
+				};
+			}
 		});
 	}
 

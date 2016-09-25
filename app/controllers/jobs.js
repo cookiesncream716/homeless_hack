@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var Job = mongoose.model('Job');
 var timeoutManager = require('./../managers/timeoutManager')
 
+
 module.exports = (function(){
+
 	return{
 		getEmployerJobs: function(req,res){
 			Job.find({'_employer': req.body._id}, function(err, result){
@@ -15,6 +17,8 @@ module.exports = (function(){
 
 					for (var i = 0; i < result.length; i++){
 						console.log("THIS IS RESULT", result[i])
+						result[i].dateAdded = createDateAdded(result[i]);
+						console.log("DOES THIS NOW HAVE DATE ADDED", result[i]);
 						if (result[i].available){
 							available.push(result[i]);
 						}else if (result[i].completed){
@@ -46,6 +50,7 @@ module.exports = (function(){
 		},
 
 		create: function(req, res){
+			console.log("THIS IS REQ.BODY", req.body);
 			var jobInfo = req.body;
 			jobInfo.available = true;
 			jobInfo.completed = false;
@@ -94,19 +99,24 @@ module.exports = (function(){
 			var currentJob;
 
 			console.log("THESE ARE THE PARAMS", sort, city, asc, userID);
-			if (asc == '+'){
+			if (asc == '-'){
 				sort = "-" + sort
 			}
 
-			Job.find({'city': city}).sort(sort).exec(function(err, result){
+			Job.find({'city': city}).sort(sort).populate('_employer').exec(function(err, result){
 				if (err){
 					console.log('err', err);
 					res.json({'status': false});
 				}else{
+					console.log(result._employer);
 					var jobs = [];
 					var info = {'status':true};
 					for (var i = 0; i < result.length; i++){
 						var job = result[i];
+						job.dateAdded = createDateAdded(job);
+						console.log("DOES THIS NOW HAVE DATE ADDED", job);
+						job.createdAt = job.createdAt.toString().split('T')[0]
+
 						console.log("JOB", job)
 						if (job.employed && job._user == userID){
 							info.currentJob = job;
@@ -126,3 +136,9 @@ module.exports = (function(){
 		}
 	}
 })();
+
+function createDateAdded(job){
+	var date = new Date(job.createdAt);
+	console.log('THIS WOULD BE DATE',date);
+	return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
+}
