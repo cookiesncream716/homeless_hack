@@ -4,6 +4,7 @@ myApp.factory('jobsFactory', function($http, AuthTokenFactory){
 		console.log(jobInfo);
 		$http.post('/jobs', jobInfo).success(function(output){
 			console.log('factory create job back from back')
+			callback();
 		})
 	}
 	return factory;

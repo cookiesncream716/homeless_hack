@@ -60,22 +60,25 @@ module.exports = (function(){
 					var elapsedTime = Math.abs(result.expiration - now);
 					var identifier = result._id;
 
-					timeoutManager.addTimeout(result._id, elapsedTime, function(){
-						Job.find({'_id': identifier}, function(err, result){
-							if (!err && !result.employed){
-								Job.remove({'_id': identifier}, function(err, result){
-									if (err){
-										console.log('err in delete', result_id, err);
-									}else{
-										console.log(identifier + " deleted");
-									}
-								});
-							}
-						});	
-					})
+					// timeoutManager.addTimeout(result._id, elapsedTime, function(){
+					// 	Job.find({'_id': identifier}, function(err, result){
+					// 		if (!err && !result.employed){
+					// 			Job.remove({'_id': identifier}, function(err, result){
+					// 				if (err){
+					// 					console.log('err in delete', result_id, err);
+					// 				}else{
+					// 					console.log(identifier + " deleted");
+					// 				}
+					// 			});
+					// 		}
+					// 	});	
+					// })
+					console.log('finished')
+					res.json(result);
 				}
-				console.log('finished')
 			});
+			// console.log('finished')
+			// res.json(result);
 		}
 	}
 })();
