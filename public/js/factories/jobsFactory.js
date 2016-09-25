@@ -1,11 +1,6 @@
 myApp.factory('jobsFactory', function($http){
 	var factory = {};
 
-	function createDatedAdded(job){
-		var date = new Date(job.createdAt);
-		job.dateAdded = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
-	}
-
 	factory.getJobsForUser = function(userID, city, callback, sort, asc){
 		var aSign;
 	
@@ -27,6 +22,16 @@ myApp.factory('jobsFactory', function($http){
 		});
 		
 	};
+
+	factory.getCompletedJobs = function(userId, callback_{
+		var info = {
+			'userID': userID
+		}
+		
+		$http.getCompletedJobs(info).success(function(completedJobs){
+
+		})
+	});
 
 	factory.biz_createJob = function(jobInfo, callback){
 		console.log(jobInfo);

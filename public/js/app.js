@@ -24,6 +24,10 @@ myApp.config(function($routeProvider){
 		// .when('/home', {
 		// 	templateUrl: 'partials/example.html'
 		// })
+		.when('/resume', {
+			controller: 'resumeController',
+			templateUrl: 'partials/resume.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		})
