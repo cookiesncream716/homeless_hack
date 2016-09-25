@@ -16,8 +16,10 @@ myApp.controller('authController', function($scope, authFactory, $location){
 	$scope.userLogin = function(){
 		console.log($scope.userInfo)
 		authFactory.userLogin($scope.userInfo, function(data){
-			console.log('userLogin callback info')
+			console.log('userLogin callback info controller')
+			console.log(data)
 			$scope.userInfo = {};
+			$location.path('/home')
 		})
 	}
 	$scope.userRegistration = function(){

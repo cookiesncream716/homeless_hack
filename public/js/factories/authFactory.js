@@ -23,6 +23,7 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 		console.log(info);
 		$http.post('/userLogin', info).success(function(output){
 			console.log('userLogin callback in factory')
+			callback(output)
 		})
 	}
 	factory.userRegister = function(info, callback){
