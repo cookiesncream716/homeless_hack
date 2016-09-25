@@ -119,10 +119,12 @@ module.exports = (function(){
 				console.log('user did not complete enough fields')
 				return res.status(400).end('Must fill out username, password, city and name');
 			}
-			// var filtemail = xssFilters.inHTMLData(user.email);
 			var filtpassword = xssFilters.inHTMLData(user.password);
 			var new_user = new User({
-				// email: filtemail, 
+				name: user.name,
+				username: user.username,
+				city: user.city,
+				zipCode: user.zipCode, 
 				password: createHash(filtpassword)
 			});
 			new_user.save().then(function(user){
