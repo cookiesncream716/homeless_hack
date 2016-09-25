@@ -11,7 +11,8 @@ var EmployerSchema = new mongoose.Schema({
 	loc: {
 		type: [Number],
 		 index: '2d'
-		},
+	},
+	street: {type: String, required: true, unique: false},
 }, {
 	timestamps:true
 

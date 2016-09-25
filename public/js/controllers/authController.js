@@ -1,16 +1,17 @@
 myApp.controller('authController', function($scope, authFactory, $location){
 
 	$scope.login = function(busInfo){
-		authFactory.login(busInfo, function(data){
+		console.log('joi')
+		authFactory.login(busInfo, 'employer', function(data){
 			console.log('this is the callback data:',data);
 			$scope.busInfo = {};
 			$location.url('/home')
 		})
 	}
 	$scope.register = function(){
-		authFactory.register($scope.busRegInfo, function(data){
-			console.log('this is the callback data:', data);
-			$scope.busRegInfo = {}; 
+		authFactory.register($scope.busRegInfo, 'employer', function(data){
+			console.log('this is the callback data:', data); 
+			$location.url('/home')
 		})
 	}
 	$scope.userLogin = function(){
@@ -19,7 +20,7 @@ myApp.controller('authController', function($scope, authFactory, $location){
 			console.log('userLogin callback info controller')
 			console.log(data)
 			$scope.userInfo = {};
-			$location.path('/home')
+			$location.url('/home')
 		})
 	}
 	$scope.userRegistration = function(){
@@ -27,7 +28,7 @@ myApp.controller('authController', function($scope, authFactory, $location){
 		authFactory.userRegister($scope.userReg, function(data){
 			console.log('user callback info controller', data)
 			$scope.userReg = {};
-			$location.path('/home')
+			$location.url('/home')
 		})
 	}
 })

@@ -1,31 +1,43 @@
 myApp.factory('authFactory', function($http, AuthTokenFactory){
 	var factory = {}; 
-
-	factory.login = function (userInfo, callback){
+	var business = {};
+	var user = {};
+	factory.login = function (userInfo, type, callback){
+		userInfo.type = type;
+		console.log(userInfo)
 		$http.post('/login', userInfo).then(function success(response){
-				console.log(response.data.token)
+				console.log(response.data.token);
+				business = {id: response.data.user._id, name: response.data.user.name, email: response.data.user.email};
+				console.log('business:', business)
 				AuthTokenFactory.setToken(response.data.token);
-					callback();
+					callback(response);
+
 			});
 
 
 	};
 
-	factory.register = function(regInfo, callback){
-		console.log(regInfo);
+	factory.register = function(regInfo, type, callback){
+		regInfo.type = type;
 		$http.post('/register', regInfo).then(function success(response){
-				user = response.data.user;
+				business = {id: response.data.user._id, name: response.data.user.name, email: response.data.user.email};
+				console.log('business registration callback', business)
 		        AuthTokenFactory.setToken(response.data.token);
-		        return response;
+		        callback(response)
 			})
+	};
+	factory.get_business = function(callback){
+		callback(business)
 	};
 	factory.userLogin = function(info, callback){
 		console.log(info);
 		$http.post('/userLogin', info).success(function(output){
-			console.log('userLogin callback in factory')
+			console.log('userLogin callback in factory - id: ', output.user._id)
+			user = {id: output.user._id, username: output.user.username};
+			console.log(user)
 			callback(output)
 		})
-	}
+	};
 	factory.userRegister = function(info, callback){
 		console.log(info);
 		$http.post('/userRegister', info).success(function(output){
@@ -33,7 +45,10 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 			callback(output)
 		})
 
-	}
+	};
+	factory.get_user = function(callback){
+		callback(user)
+	};
 	return factory;
 
 })
