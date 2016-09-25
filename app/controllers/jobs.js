@@ -7,28 +7,13 @@ module.exports = (function(){
 
 	return{
 		getEmployerJobs: function(req,res){
-			Job.find({'_employer': req.body._id}, function(err, result){
+			console.log(req.params.id)
+			Job.find({'_employer': req.params.id}, function(err, result){
 				if (err){
 					console.log('err');
 				}else{
-					var available = [];
-					var completed = [];
-					var employed = [];
-
-					for (var i = 0; i < result.length; i++){
-						console.log("THIS IS RESULT", result[i])
-						result[i].dateAdded = createDateAdded(result[i]);
-						console.log("DOES THIS NOW HAVE DATE ADDED", result[i]);
-						if (result[i].available){
-							available.push(result[i]);
-						}else if (result[i].completed){
-							active.push(result[i].completed);
-						}else if (result[i].employed){
-							active.push(result[i].employed);
-						}
-					}
-
-					res.json({'status': true, 'available': available, 'completed': completed, 'employed': employed});
+					console.log('found jobs', result);
+					res.json(result);
 				}
 			})
 		},
@@ -50,8 +35,9 @@ module.exports = (function(){
 		},
 
 		getCompletedJobs: function(req, res){
-			Jobs.find({'_userID': req.params.userID, 'completed': true}).populate('_employer').exec(function(err, jobs){
+			Job.find({'_user': req.params.userID, 'completed': true}).populate('_employer').exec(function(err, jobs){
 				if (!err){
+					console.log("PREVIEW COMPLETED", jobs)
 					jobs.createdAt = createDateAdded(jobs);
 					res.json({'status': true, 'jobs': jobs});
 				}
@@ -66,7 +52,7 @@ module.exports = (function(){
 			jobInfo.employed = false;
 			jobInfo.reference_states = false;
 
-			var newJob = new Job(jobInfo);
+			var newJob = new Job(req.body);
 			newJob.save(function(err, result){
 				if(err){
 					console.log("You got errors??", err);
@@ -76,23 +62,7 @@ module.exports = (function(){
 					var elapsedTime = Math.abs(result.expiration - now);
 					var identifier = result._id;
 
-					// timeoutManager.addTimeout(result._id, elapsedTime, function(){
-						
-					// 	Job.find({'_id': identifier}, function(err, result){
-							
-					// 		if (!err && !result.employed){
-								
-					// 			Job.remove({'_id': identifier}, function(err, result){
-									
-					// 				if (err){
-					// 					console.log('err in delete', result_id, err);
-					// 				}else{
-					// 					console.log(identifier + " deleted");
-					// 				}
-					// 			});
-					// 		}
-					// 	});	
-					// });
+
 					console.log('finished')
 					res.json(result);
 
@@ -141,7 +111,21 @@ module.exports = (function(){
 					res.json(info);
 				}
 			});
+		},
 
+		completedJob: function(req, res){
+			console.log('in jobs.js ' + req.params.id)
+			Job.findOne({_id: req.params.id}, function(err, job){
+				if(err){
+					console.log('error finding job to update as completed', err)
+					res.json(err)
+				} else{
+					console.log('found job', job)
+					Job.update({_id: req.params.id}, {completed: true, employed: false, available: false}, function(err, product){
+						res.json(product)
+					})
+				}
+			})
 		}
 	}
 })();

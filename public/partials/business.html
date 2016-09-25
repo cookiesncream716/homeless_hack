@@ -9,27 +9,17 @@
 			<div id='left'>
 				<div class='content'>
 					<h3>Current Job Listings</h3>
-					<div class='jobs'>
-						<p>here is a job</p>
-						<p>more info about it</p>
-						<p>and some more stuff too</p>
-						<p> just need to see if overflow is working the way that I want it to</p>
+					<div ng-repeat='job in currentJobs'>
+						<div ng-if='job.completed==false'>
+							<div ng-if='job.employed==false' class='jobs'>
+								<h4>Job: {{job.title}}</h4>
+								<p>Description: {{job.description}}</p>
+								<p>Payment: {{job.payment}}</p>
+								<p>Location: {{job.street}}, {{job.city}}</p>
+								<p>Posted: {{job.createdAt | date: 'MMMM dd, yyyy'}}</p>
+							</div>
+						</div>
 					</div>
-					<br>
-					<div class='jobs'>
-						<p>here is a job</p>
-						<p>more info about it</p>
-						<p>and some more stuff too</p>
-						<p> just need to see if overflow is working the way that I want it to</p>
-					</div>
-					<br>
-					<div class='jobs'>
-						<p>here is a job</p>
-						<p>more info about it</p>
-						<p>and some more stuff too</p>
-						<p> just need to see if overflow is working the way that I want it to</p>
-					</div>
-
 					<br>
 					<br>
 				</div>
@@ -72,15 +62,20 @@
 								<input type='text' ng-model='newJob.payment'>
 							</li>
 						</ul>
-						<input type='hidden' ng-value='newJob.id=biz_info.id'>
+						<input type='hidden' ng-value='newJob._employer=biz_info.id'>
 						<button ng-click='addJob()'>Submit</button>
 					</form>
 				</div>
 				</div>
 				<div id='bottom'>
 					<h3>Open Jobs</h3>
-					<div class='jobs'>
-						<p>here is a job</p>
+					<div ng-repeat='job in currentJobs'>
+						<div ng-if='job.employed==true' class='jobs'>
+							<h4>Job: {{job.title}}</h4>
+							<p>Description: {{job.description}}</p>
+							<p>Location: {{job.street}}, {{job.city}}&nbsp&nbsp&nbsp&nbsp&nbspPayment: {{job.payment}}&nbsp&nbsp&nbsp&nbsp&nbspPosted: {{job.createdAt | date: 'MMMM dd, yyyy'}}</p>
+							<button ng-click='completed(job._id)'>Completed</button>
+						</div>
 					</div>
 				</div>
 			</div>

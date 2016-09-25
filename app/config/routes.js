@@ -26,6 +26,12 @@ module.exports = function(app){
 	app.post('/jobs', function(req, res){
 		console.log('in routes')
 		jobs.create(req, res);
+	});
+	app.post('/jobs/:id', function(req, res){
+		jobs.getEmployerJobs(req, res);
+	});
+	app.get('/jobs/:id', function(req, res){
+		jobs.completedJob(req, res)
 	})
 
 	app.get('/jobsForUser/:userID/:city/:sort/:asc/', function(req, res){
@@ -33,6 +39,7 @@ module.exports = function(app){
 	});
 
 	app.get('/completedJobs/:userID', function(req, res){
+		console.log('COMPLETED REACHED');
 		jobs.getCompletedJobs(req, res);
 	});
 

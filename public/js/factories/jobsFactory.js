@@ -25,7 +25,7 @@ myApp.factory('jobsFactory', function($http){
 
 	factory.getCompletedJobs = function(userId, callback){
 		
-		$http.get('/completedJobs' + userId).success(function(result){
+		$http.get('/completedJobs/' + userId).success(function(result){
 			if (result.status){
 				callback(result.jobs);
 			}
@@ -51,6 +51,22 @@ myApp.factory('jobsFactory', function($http){
 				callback();
 			}
 		});
+	};
+
+	factory.biz_getJobs = function(id, callback){
+		console.log('biz id:' + id);
+		$http.post('/jobs/' + id).success(function(output){
+			console.log(output)
+			callback(output)
+		})
+	};
+
+	factory.completedJob = function(id, callback){
+		console.log('factory', id)
+		$http.get('/jobs/' + id).success(function(output){
+			console.log('job marked as completed');
+			callback()
+		})
 	};
 
 	return factory;

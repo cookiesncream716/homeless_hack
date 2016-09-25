@@ -4,11 +4,11 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 	var user = {};
 	factory.login = function (userInfo, type, callback){
 		userInfo.type = type;
-		console.log(userInfo)
+		// console.log(userInfo)
 		$http.post('/login', userInfo).then(function success(response){
 				console.log(response.data.token);
 				business = {id: response.data.user._id, name: response.data.user.name, email: response.data.user.email};
-				console.log('business:', business)
+				// console.log('business:', business)
 				AuthTokenFactory.setToken(response.data.token);
 					callback(response);
 
@@ -21,7 +21,7 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 		regInfo.type = type;
 		$http.post('/register', regInfo).then(function success(response){
 				business = {id: response.data.user._id, name: response.data.user.name, email: response.data.user.email};
-				console.log('business registration callback', business)
+				// console.log('business registration callback', business)
 		        AuthTokenFactory.setToken(response.data.token);
 		        callback(response)
 		})
