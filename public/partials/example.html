@@ -1,5 +1,5 @@
-
 <link rel="stylesheet" type="text/css" href="../static/style.css">
+
 <div ng-controller='exampleController'>
 	<div id='container'>
 		<div id='header'>
@@ -15,19 +15,9 @@
 						<p>and some more stuff too</p>
 						<p> just need to see if overflow is working the way that I want it to</p>
 					</div>
-					<br>
+					<h3>Open Jobs</h3>
 					<div class='jobs'>
 						<p>here is a job</p>
-						<p>more info about it</p>
-						<p>and some more stuff too</p>
-						<p> just need to see if overflow is working the way that I want it to</p>
-					</div>
-					<br>
-					<div class='jobs'>
-						<p>here is a job</p>
-						<p>more info about it</p>
-						<p>and some more stuff too</p>
-						<p> just need to see if overflow is working the way that I want it to</p>
 					</div>
 
 					<br>
@@ -38,45 +28,44 @@
 					<h3>Add a Job</h3>
 					<ul>
 					<div class='form'>
-					<li class='register_class'>
-						<label for='Title'>Title</label>
-						<input type='text'>
-						<span class='reg_sign'>Name of the Job</span>
-					</li>
+						<li class='register_class'>
+							<label for='Title'>Title</label>
+							<input type='text'>
+							<span class='reg_sign'>Name of the Job</span>
+						</li>
 
-					<li class='register_class'>
-						<label for='Description'>Description</label>
-						<input type='text'>
-						<span class='reg_sign'>Job Description</span>
-					</li>
+						<li class='register_class'>
+							<label for='Description'>Description</label>
+							<input type='text'>
+							<span class='reg_sign'>Job Description</span>
+						</li>
 
-					<li class='register_class'>
-						<label for='Location_street'>Street</label>
-						<input type='text'>
-						<span class='reg_sign'>Street Address</span>
-					</li>
-					<li class='register_class'>
-						<label for='Location_city'>City</label>
-						<input type='text'>
-						<span class='reg_sign'>City</span>
-					</li>
-					<li class='register_class'>
-						<label for='Location'>Zipcode</label>
-						<input type='text'>
-						<span class='reg_sign'>Zip</span>
-					</li>
-				</ul>
+						<li class='register_class'>
+							<label for='Location_street'>Street</label>
+							<input type='text'>
+							<span class='reg_sign'>Street Address</span>
+						</li>
+						<li class='register_class'>
+							<label for='Location_city'>City</label>
+							<input type='text'>
+							<span class='reg_sign'>City</span>
+						</li>
+						<li class='register_class'>
+							<label for='Location'>Zipcode</label>
+							<input type='text'>
+							<span class='reg_sign'>Zip</span>
+						</li>
+						<li class='register_class'>
+							<label for='Expiration_date'>Completion Date</label>
+							<input type='text'>
+							<span class='reg_sign'>Date to be Completed</span>
+						</li>
+
+						<button ng-click='userRegistration()'>Register</button>
+					</ul>
 				</div>
-				</div>
-				<div id='bottom'>
-					<h3>Open Jobs</h3>
-					<div class='jobs'>
-						<p>here is a job</p>
-					</div>
 				</div>
 			</div>
-		</div>
-		<div id='footer'>
 		</div>
 	</div>
 </div>
