@@ -20,7 +20,7 @@ myApp.controller('authController', function($scope, authFactory, $location){
 			// console.log('userLogin callback info controller')
 			// console.log(data)
 			$scope.userInfo = {};
-			$location.url('/business')
+			$location.path('/userLanding')
 		})
 	}
 	$scope.userRegistration = function(){
@@ -28,7 +28,7 @@ myApp.controller('authController', function($scope, authFactory, $location){
 		authFactory.userRegister($scope.userReg, function(data){
 			// console.log('user callback info controller', data)
 			$scope.userReg = {};
-			$location.url('/business')
+			$location.path('/userLanding');
 		})
 	}
 })

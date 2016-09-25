@@ -1,5 +1,38 @@
-myApp.factory('jobsFactory', function($http, AuthTokenFactory){
-	var factory = {}
+myApp.factory('jobsFactory', function($http){
+	var factory = {};
+
+	factory.getJobsForUser = function(userID, city, callback, sort, asc){
+		var aSign;
+	
+		if(!sort){
+			sort = "createdAt"
+		}
+
+		if(!asc){
+			aSign = "-"
+		}else{
+			aSign = "+"
+		}
+
+		var url = "/jobsForUser/" + userID + '/' + city + '/' + sort + "/" + aSign; 
+		console.log('URL!!', url)
+		$http.get(url).success(function(result){
+			console.log(result)
+				callback(result);
+		});
+		
+	};
+
+	factory.getCompletedJobs = function(userId, callback_{
+		var info = {
+			'userID': userID
+		}
+		
+		$http.getCompletedJobs(info).success(function(completedJobs){
+
+		})
+	});
+
 	factory.biz_createJob = function(jobInfo, callback){
 		console.log(jobInfo);
 		$http.post('/jobs', jobInfo).success(function(output){
@@ -22,6 +55,19 @@ myApp.factory('jobsFactory', function($http, AuthTokenFactory){
 			// console.log()
 			callback()
 		})
+	}
+
+	factory.acceptJob = function(jobInfo, userID, callback){
+		var info = {
+			'job': jobInfo,
+			'userID': userID
+		}
+
+		$http.post('/acceptJob', info).success(function(response){
+			if (response.status){
+				callback();
+			}
+		});
 	}
 	return factory;
 })

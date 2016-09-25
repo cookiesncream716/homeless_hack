@@ -10,6 +10,8 @@ myApp.controller('businessController', function($scope, authFactory, jobsFactory
 	$scope.addJob = function(){
 		console.log('clicked add Job');
 		console.log($scope.newJob);
+		// var info = $scope.newJob;
+		// info._employer = $scope.biz_info.id;
 		jobsFactory.biz_createJob($scope.newJob, function(data){
 			console.log('businessController returned from jobsFactory', data)
 			$scope.newJob = {}

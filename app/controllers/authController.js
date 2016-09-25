@@ -26,27 +26,29 @@ module.exports = (function(){
 				if(!user1){
 					console.log('error finding user', err);
 					res.send({status: 500, message: 'Sorry, the user account does not exist. Please check again.', type: 'internal'});
-				} else if(!isValidPassword(user1, user.password)){
-					console.log(err);
+				}else if(!isValidPassword(user1, user.password)){
+					console.log('whatttlkjwer',err);
 					res.send({status:500, message:'Invalid password. Please try again.', type:'internal'});
-				} else{
+				}else{
 					console.log('user successfully logged in')
 					var token = jwt.sign({
 						_id: user1._id,
 						username: user1.username
 					}, jwtSecret);
-					console.log('this is the user token:', token);
+
 					res.send({
 						token: token,
 						user: {
 							_id: user1._id,
 							username: user1.username,
+							city: user1.city,
+							zipCode: user1.zipCode,
 							logged_in: true
 						}
 					});
 				}
 
-			})
+			});
 		},
 		userReg: function(req, res){
 			console.log('userReg in back AuthController');
@@ -65,22 +67,26 @@ module.exports = (function(){
 				zipCode: user.zipCode, 
 				password: createHash(filtpassword)
 			});
-			new_user.save().then(function(user){
-				console.log('this is the user', user)
+
+			new_user.save().then(function(savedUser){
+				console.log('this is the user', savedUser);
+
+				var token = jwt.sign({
+					_id: savedUser._id,
+					username: savedUser.username
+				}, jwtSecret);
+				console.log('this is the user token:', token);
+				res.send({
+					token: token,
+					user: {
+						_id: savedUser._id,
+						username: savedUser.username,
+						city: savedUser.city,
+						zipCode: savedUser.zipCode,
+						loggen_in: true
+					}
+				});
 			})
-			var token = jwt.sign({
-				_id: user._id,
-				username: user.username
-			}, jwtSecret);
-			console.log('this is the user token:', token);
-			res.send({
-				token: token,
-				user: {
-					_id: user._id,
-					username: user.username,
-					loggen_in: true
-				}
-			});
 
 		}
 	}

@@ -24,7 +24,7 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 				// console.log('business registration callback', business)
 		        AuthTokenFactory.setToken(response.data.token);
 		        callback(response)
-			})
+		})
 	};
 	factory.get_business = function(callback){
 		callback(business)
@@ -32,8 +32,11 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 	factory.userLogin = function(info, callback){
 		console.log(info);
 		$http.post('/userLogin', info).success(function(output){
+			console.log("THIS IS OUTPUT", output)
 			console.log('userLogin callback in factory - id: ', output.user._id)
-			user = {id: output.user._id, username: output.user.username};
+			user = {id: output.user._id, username: output.user.username, city: output.user.city};
+			console.log("OUTPUT", output.token);
+			AuthTokenFactory.setToken(output.token);
 			console.log(user)
 			callback(output)
 		})
@@ -42,11 +45,12 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 		console.log(info);
 		$http.post('/userRegister', info).success(function(output){
 			console.log('userRegister callback in factory')
-			callback(output)
+			callback(output);
 		})
 
 	};
 	factory.get_user = function(callback){
+		console.log('USER:', user)
 		callback(user)
 	};
 	return factory;

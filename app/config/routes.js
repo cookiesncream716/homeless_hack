@@ -24,7 +24,7 @@ module.exports = function(app){
 
 	});
 	app.post('/jobs', function(req, res){
-		// console.log('in routes')
+		console.log('in routes')
 		jobs.create(req, res);
 	});
 	app.post('/jobs/:id', function(req, res){
@@ -34,4 +34,11 @@ module.exports = function(app){
 		jobs.completedJob(req, res)
 	})
 
+	app.get('/jobsForUser/:userID/:city/:sort/:asc/', function(req, res){
+		jobs.getJobsForUser(req, res);
+	});
+
+	app.post('/acceptJob', function(req, res){
+		jobs.acceptJob(req, res);
+	});
 }
