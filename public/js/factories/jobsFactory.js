@@ -23,15 +23,14 @@ myApp.factory('jobsFactory', function($http){
 		
 	};
 
-	factory.getCompletedJobs = function(userId, callback_{
-		var info = {
-			'userID': userID
-		}
+	factory.getCompletedJobs = function(userId, callback){
 		
-		$http.getCompletedJobs(info).success(function(completedJobs){
-
-		})
-	});
+		$http.get('/completedJobs' + userId).success(function(result){
+			if (result.status){
+				callback(result.jobs);
+			}
+		});
+	};
 
 	factory.biz_createJob = function(jobInfo, callback){
 		console.log(jobInfo);
@@ -39,7 +38,7 @@ myApp.factory('jobsFactory', function($http){
 			console.log('factory create job back from back')
 			callback();
 		})
-	}
+	};
 
 	factory.acceptJob = function(jobInfo, userID, callback){
 		var info = {
@@ -52,6 +51,7 @@ myApp.factory('jobsFactory', function($http){
 				callback();
 			}
 		});
-	}
+	};
+
 	return factory;
 })

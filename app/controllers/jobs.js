@@ -49,6 +49,15 @@ module.exports = (function(){
 			})
 		},
 
+		getCompletedJobs: function(req, res){
+			Jobs.find({'_userID': req.params.userID, 'completed': true}).populate('_employer').exec(function(err, jobs){
+				if (!err){
+					jobs.createdAt = createDateAdded(jobs);
+					res.json({'status': true, 'jobs': jobs});
+				}
+			})
+		},
+
 		create: function(req, res){
 			console.log("THIS IS REQ.BODY", req.body);
 			var jobInfo = req.body;
@@ -140,5 +149,5 @@ module.exports = (function(){
 function createDateAdded(job){
 	var date = new Date(job.createdAt);
 	console.log('THIS WOULD BE DATE',date);
-	return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
+	return date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
 }
