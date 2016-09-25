@@ -3,11 +3,15 @@
 	offwhite: #F0F2EF;
 	blue: #78E0DC;
 	brown: #5C5346;
-	silver: #89890;
+	silver: #898980;
 */
+
+
+/*responsive--> make sure to take out the height in the end*/
 
 body{
 	font-family: Trebuchet MS;
+	color:#5C5346;
 }
 
 #container{
@@ -15,9 +19,10 @@ body{
 }
 
 #header{
-	padding-top:7px;
-	font-size:30px;
+	font-size:50px;
 	background-color: #78E0DC;
+	text-align: center;
+	color:black;
 }
 
 #main_content{
@@ -29,6 +34,19 @@ body{
 	margin-right:50px;
 }
 
+#left h1, #right h1{
+	font-size:50px;
+}
+
+.index_description{
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+.index_description1{
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
 
 .jobs{
 	height:100px;
@@ -37,13 +55,21 @@ body{
 	color:black;
 }
 
+#employee_login{
+	margin-top: -18px;
+}
+.jobs p{
+	color: black;
+}
+
+#help{
+	margin-top: -20px;
+}
+
 h3{
 	font-size:40px;
 }
-#right{
-	border:2px solid black;
-	border-radius: 5px;
-}
+
 
 .form{
 	margin-left:100px;
@@ -75,7 +101,7 @@ label{
 	display: block;
 	float:left;
 	height:15px;
-/*	padding:3px;*/
+	padding:3px;
 	overflow: hidden;
 	margin-top: -13px;
 	background-color: #5C5346;
@@ -88,14 +114,23 @@ label{
 	border-radius: 2px;
 }
 
-.register_class input[type="text"]{
+.register_class input[type="text"], .register_class input[type="email"], .register_class input[type="password"], .register_class input[type="number"]{
 	width:100%;
 	display:block;
 	border:none;
 	background-color: #78E0DC;
 	height:50px;
 	font-size:20px;
+	color:#898980;
 
+}
+
+.first{
+	/*display: block;*/
+}
+
+.second{
+	display:none;
 }
 
 .register_class label{
@@ -105,7 +140,6 @@ label{
 	background-color: #5C5346;
 	display:block;
 	text-align: center;
-	/*color:#FF3B3F;*/
 	margin-bottom:-25px;
 	margin-left:-3px;
 	margin-right:-1px;
@@ -117,15 +151,28 @@ label{
 
 
 /*end of the form*/
-
-
-
-
-
 #left, #right{
 	vertical-align: top;
 	display: inline-block;
 	width:500px;
 	text-align: center;
 }
+
+
+.button2{
+	height:40px;
+	width:80px;
+	background-color: #898980;
+	margin-left: -90px;
+	color:white;
+}
+
+
+
+button:hover{
+	background-color:#78E0DC ;
+	color:white;
+}
+
+
 
