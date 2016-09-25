@@ -1,8 +1,26 @@
 <div id = 'user'>
-	<div id = 'currentJob' ng-if = 'current'>
-		<h2>{{currentJob}}</h2>
-		<p>{{currentJob.address}}</p>
+	<h4>Welcome, {{username}}</h4>
 
-		
+	<div id = 'currentJob' ng-if = 'current'>
+		<h4>Current Job Taken</h4>
+		<h2>{{currentJob.title}}</h2>
+		<p class = 'address'>{{currentJob.address}}</p>
+		<p class = 'descript'>{{currentJob.summary}</p>
+	</div>
+
+	<div id = 'allJobs'>
+		<h2>All available jobs in {{user.city}}</h2>
+
+		<div ng-repeat = "job in jobs">
+			<h2>Title: {{job.title}}</h2>
+			<p>Created at: {{job.createdAt}}</p>
+			<p>Description: {{job.description}}</p>
+			<button ng-click = "job.accept = true">Accept Job</button>
+			<div ng-show = "job.accept">
+				<p>Employer Name</p>
+				<p>Employer Contact Info</p>
+				<button ng-click = "confirmJob(job)">Confirm</button>
+			</div>
+		</div>
 	</div>
 </div>

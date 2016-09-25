@@ -1,17 +1,17 @@
-var employer = require('./../controllers/employers.js');
+var employers = require('./../controllers/employers.js');
 var auth = require('./../controllers/authController.js');
-var jobs = require('./../controllers/jobs');
+var jobs = require('./../controllers/jobs.js');
 
 module.exports = function(app){
 	app.post('/login', function(req, res){
 		if (req.body.type == 'employer'){
-			employer.login(req, res);
+			employers.login(req, res);
 		}
 	});
 
 	app.post('/register', function(req, res){
 		if (req.body.type == 'employer'){
-			employer.register(req, res);
+			employers.register(req, res);
 		}
 	});
 
@@ -23,8 +23,16 @@ module.exports = function(app){
 		auth.userReg(req, res);
 
 	});
+	app.post('/jobs', function(req, res){
+		console.log('in routes')
+		jobs.create(req, res);
+	})
 
 	app.get('/jobsForUser/:userID/:city/:sort/:asc/', function(req, res){
 		jobs.getJobsForUser(req, res);
+	});
+
+	app.post('/acceptJob', function(req, res){
+		jobs.acceptJob(req, res);
 	});
 }

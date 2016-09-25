@@ -3,19 +3,19 @@ var manager = {
 };
 
 manager.addTimeout = function(name, expire, callback){
-	if (name in timeouts){
-		clearTimeout(timeouts[name])
-		delete timeouts[name];
+	if (name in this.timeouts){
+		clearTimeout(this.timeouts[name])
+		delete this.timeouts[name];
 	}
 
-	timeouts[name] = setTimeout(function(){
+	this.timeouts[name] = setTimeout(function(){
 		callback()
 	}, expire);
 };
 
 manager.removeTimeout = function(name){
-	clearTimeout(timeouts[name]);
-	delete timeouts[name];
+	clearTimeout(this.timeouts[name]);
+	delete this.timeouts[name];
 };
 
 module.exports = manager;

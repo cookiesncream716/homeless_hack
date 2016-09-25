@@ -11,6 +11,13 @@ myApp.controller('userLandingController', function($scope, jobsFactory, authFact
 
 	initControllerScope();
 
+	$scope.confirmJob = function(cJob){
+		console.log("look at cJob", cJob)
+		jobsFactory.acceptJob(cJob, $scope.user.id, function(){
+
+		});
+	}
+
 	function initControllerScope(){
 		authFactory.get_user(function(user){
 			$scope.user = user;
@@ -18,7 +25,7 @@ myApp.controller('userLandingController', function($scope, jobsFactory, authFact
 			jobsFactory.getJobsForUser(user.id, user.city, function(result){
 				console.log(result);
 				if (result.status){
-					$scope.availableJobs = result.jobs;
+					$scope.jobs = result.jobs;
 
 					if ('currentJob' in result){
 						$scope.currentJob = result.currentJob;

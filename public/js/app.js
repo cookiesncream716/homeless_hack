@@ -17,6 +17,13 @@ myApp.config(function($routeProvider){
 			templateUrl
 			: 'partials/busLanding.html'
 		})
+		.when('/business', {
+			controller: 'businessController',
+			templateUrl: 'partials/business.html'
+		})
+		// .when('/home', {
+		// 	templateUrl: 'partials/example.html'
+		// })
 		.otherwise({
 			redirectTo: '/'
 		})

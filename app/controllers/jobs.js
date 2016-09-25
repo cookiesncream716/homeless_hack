@@ -14,8 +14,9 @@ module.exports = (function(){
 					var employed = [];
 
 					for (var i = 0; i < result.length; i++){
+						console.log("THIS IS RESULT", result[i])
 						if (result[i].available){
-							active.push(result[i]);
+							available.push(result[i]);
 						}else if (result[i].completed){
 							active.push(result[i].completed);
 						}else if (result[i].employed){
@@ -29,14 +30,16 @@ module.exports = (function(){
 		},
 
 		acceptJob: function(req,res){
-			Job.update({_id: req.body.jobID},{
-				'user': req.body.userID,
+			console.log("THIS IS WHAT REQ.BODY LOOKS LIKE", req.body);
+			Job.update({_id: req.body.job._id},{
+				'_user': req.body.userID,
 				'available': false,
 				'employed': true
 			}, function(err, response){
 				if (err){
 					console.log('update at ' + req.body.jobID + ' failed');
 				}else{
+					console.log(response)
 					res.json({'status': true, 'result': response});
 				}
 			})
@@ -59,23 +62,26 @@ module.exports = (function(){
 					var elapsedTime = Math.abs(result.expiration - now);
 					var identifier = result._id;
 
-					timeoutManager.addTimeout(result._id, elapsedTime, function(){
+					// timeoutManager.addTimeout(result._id, elapsedTime, function(){
 						
-						Job.find({'_id': identifier}, function(err, result){
+					// 	Job.find({'_id': identifier}, function(err, result){
 							
-							if (!err && !result.employed){
+					// 		if (!err && !result.employed){
 								
-								Job.remove({'_id': identifier}, function(err, result){
+					// 			Job.remove({'_id': identifier}, function(err, result){
 									
-									if (err){
-										console.log('err in delete', result_id, err);
-									}else{
-										console.log(identifier + " deleted");
-									}
-								});
-							}
-						});	
-					})
+					// 				if (err){
+					// 					console.log('err in delete', result_id, err);
+					// 				}else{
+					// 					console.log(identifier + " deleted");
+					// 				}
+					// 			});
+					// 		}
+					// 	});	
+					// });
+					console.log('finished')
+					res.json(result);
+
 				}
 			});
 		},
@@ -88,7 +94,7 @@ module.exports = (function(){
 			var currentJob;
 
 			console.log("THESE ARE THE PARAMS", sort, city, asc, userID);
-			if (asc){
+			if (asc == '+'){
 				sort = "-" + sort
 			}
 
@@ -97,23 +103,21 @@ module.exports = (function(){
 					console.log('err', err);
 					res.json({'status': false});
 				}else{
+					var jobs = [];
 					var info = {'status':true};
-
 					for (var i = 0; i < result.length; i++){
 						var job = result[i];
-
+						console.log("JOB", job)
 						if (job.employed && job._user == userID){
-							Job.findOne({'_user': userID}).populate('_employer').success(function(err, cJob){
-								if (!err){
-									info.currentJob = cJob;
-									res.json(info);
-								}
-							});
+							info.currentJob = job;
+							console.log("CURRENT JOB", job);
+						}else{
+							jobs.push(job);
 						}
 
 					}
 
-
+					info.jobs = jobs;
 					console.log("INFO", info);
 					res.json(info);
 				}

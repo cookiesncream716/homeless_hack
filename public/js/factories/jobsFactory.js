@@ -23,5 +23,23 @@ myApp.factory('jobsFactory', function($http){
 		
 	};
 
+	factory.biz_createJob = function(jobInfo, callback){
+		console.log(jobInfo);
+		$http.post('/jobs', jobInfo).success(function(output){
+			console.log('factory create job back from back')
+			callback();
+		})
+	}
+
+	factory.acceptJob = function(jobInfo, userID, callback){
+		var info = {
+			'job': jobInfo,
+			'userID': userID
+		}
+
+		$http.post('/acceptJob', info).success(function(response){
+
+		});
+	}
 	return factory;
-});
+})
