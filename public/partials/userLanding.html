@@ -3,7 +3,7 @@
 		<h1>Opportunity Works</h1>
 	</div>
 	<h2>Welcome {{user.username}}</h2>
-	<button ng-href = "/resume">See Resume For Past Jobs</button>
+	<button ng-click = "resume()">See Resume For Past Jobs</button>
 
 	<div id = 'currentJob' ng-if = 'current'>
 		<h4 class='bold'>Current Job Taken</h4>

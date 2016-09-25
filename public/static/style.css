@@ -6,6 +6,8 @@
 	silver: #898980;
 */
 
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+
 
 /*responsive--> make sure to take out the height in the end*/
 
@@ -15,6 +17,21 @@ body{
 }
 
 /*#container{
+#resumeFrame{
+	margin:0 auto;
+	margin-top: 2em;
+	width:85%;
+	min-height:15em;
+	background:	#F5F5DC;
+	font-family: 'Open Sans', sans-serif;
+	border-radius: 1em;
+	padding:1em;
+	box-shadow:3px 3px 5px 6px #ccc;
+}
+	#resumeFrame h2, h4{
+		text-align: center
+	}
+#container{
 	background-color:#F0F2EF;
 }*/
 

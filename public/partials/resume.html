@@ -1,9 +1,19 @@
 <div id = 'resume'>
-	<h2>{{user.name}}</h2>
+	<div id = 'resumeFrame'>
+		<h2>{{user.name}}</h2>
 
-	<h4>Work History</h4>
+		<h4>Work History</h4>
 
-	<div ng-repeat = 'job in jobs'>
-		{{job.title}}
+		<div ng-repeat = 'job in jobs'>
+			<h5>{{job.title}}</h5>
+			<p>{{job.description}}</p>
+			<p>{{job.createdAt}}</p>
+
+			<br>
+			<p>Reference:</p>
+			<p>{{job._employer.name}}</p>
+			<p>Email: {{job._employer.email}}</p>
+			<br><hr><hr><br>
+		</div>
 	</div>
 </div>

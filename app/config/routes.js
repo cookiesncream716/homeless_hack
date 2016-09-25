@@ -38,6 +38,11 @@ module.exports = function(app){
 		jobs.getJobsForUser(req, res);
 	});
 
+	app.get('/completedJobs/:userID', function(req, res){
+		console.log('COMPLETED REACHED');
+		jobs.getCompletedJobs(req, res);
+	});
+
 	app.post('/acceptJob', function(req, res){
 		jobs.acceptJob(req, res);
 	});

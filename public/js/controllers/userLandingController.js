@@ -1,4 +1,4 @@
-myApp.controller('userLandingController', function($scope, jobsFactory, authFactory){
+myApp.controller('userLandingController', function($scope, jobsFactory, $location, authFactory){
 	$scope.user = {};
 	$scope.currentJob = {};
 	$scope.activeJobs = {};
@@ -22,6 +22,10 @@ myApp.controller('userLandingController', function($scope, jobsFactory, authFact
 				};
 			}
 		});
+	};
+
+	$scope.resume = function(){
+		$location.path('/resume')
 	}
 	function initControllerScope(){
 		authFactory.get_user(function(user){
