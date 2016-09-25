@@ -16,6 +16,7 @@ body{
 
 #container{
 	background-color:#F0F2EF;
+	margin-bottom: 20px;
 }
 
 #header{
@@ -23,6 +24,10 @@ body{
 	background-color: #78E0DC;
 	text-align: center;
 	color:black;
+}
+
+#header h1{
+	font-size: 100px;
 }
 
 #main_content{
@@ -87,6 +92,7 @@ ul{
 	border-left: 1px solid black;
 	border-right: 1px solid black;
 	border-bottom: 1px solid black;
+	margin-top: 30px;
 	margin-bottom: 40px;
 	padding-left:2px;
 	border-radius:5px 5px 0px 0px;
@@ -95,17 +101,22 @@ ul{
 	background-color: #78E0DC;
 	color:white;
 
+
 }
 
 label{
 	display: block;
 	float:left;
 	height:15px;
-	padding:3px;
+	padding-left:3px;
+	padding-right:3px;
+	padding-bottom:3px;
 	overflow: hidden;
-	margin-top: -13px;
+	margin-top: -15px;
 	background-color: #5C5346;
 	border:none;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
 }
 
 
@@ -125,13 +136,6 @@ label{
 
 }
 
-.first{
-	/*display: block;*/
-}
-
-.second{
-	display:none;
-}
 
 .register_class label{
 	background-color: #5C5346;
@@ -173,6 +177,9 @@ button:hover{
 	background-color:#78E0DC ;
 	color:white;
 }
+
+
+
 
 
 
