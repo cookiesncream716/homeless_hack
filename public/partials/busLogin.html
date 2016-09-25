@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="../static/style.css">
-<script src='http://use.fontawesome.com/e850b7775b.js'></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" href="../static/style.css"> -->
+<!-- <script src='http://use.fontawesome.com/e850b7775b.js'></script> -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
 <script>
 
 // $(document).ready(function(){
@@ -16,7 +16,7 @@
 // 		$("#reg_bus_button").toggleClass("second")
 // 	})
 
-})
+// })
 
 </script>
 <div id='header'>
@@ -37,7 +37,7 @@
 	</div> 
 
 
-	<div id='b_login' class='first'>
+	<div ng-if='biz_login' id='b_login' class='first'>
 		<h2>Business Login</h2>
 		<form>
 		<div class='form'>
@@ -59,11 +59,11 @@
 
 		<div id='reg_bus_button' class='first'>
 		<h2>Sign Up to get your jobs done!</h2>
-		<button id='reg_bus' class='button1'>Register Business</button>
+		<button ng-click='showRegBiz()' id='reg_bus' class='button1'>Register Business</button>
 		</div>
 	</div>
 
-	<div id='u_reg'> <!--class='second'>-->
+	<div ng-if='employee_reg' id='u_reg'> <!--class='second'>-->
 		<form>
 
 		<h2>Employee Registration</h2>
@@ -125,7 +125,7 @@
 		<p>Browse jobs through small jobs that are local to you</p>
 		<p>Find yourself with an autocompleted resume that includes your job history from our website</p>
 	</div>
-	<div id='employee_login' class='first'>
+	<div ng-if='employeeLogin' id='employee_login' class='first'>
 		<h2>Employee Login</h2>
 		<div class='form'>
 		<form>
@@ -146,12 +146,12 @@
 		</div>
 		<div id='reg_button_employee' class='first'>
 	<h2>Not a Member? Join now to seize the opportunity!</h2>
-	<button id='reg_employee' class='button1'>Employee Register</button>
+	<button ng-click='showEmployeeReg()' id='reg_employee' class='button1'>Employee Register</button>
 	</div>
 	</div>
 
 
-	<div id='business_registration'><!-- class='second'>-->
+	<div ng-if='biz_reg' id='business_registration'><!-- class='second'>-->
 		<h2>Business Registration</h2>
 		<form>
 		<div class='form'>

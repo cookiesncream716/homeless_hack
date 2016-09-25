@@ -1,5 +1,16 @@
 myApp.controller('authController', function($scope, authFactory, $location){
-
+	$scope.employee_reg = false;
+	$scope.biz_reg = false;
+	$scope.employeeLogin = true;
+	$scope.biz_login = true;
+	$scope.showRegBiz = function(){
+		$scope.biz_reg = true;
+		$scope.employeeLogin = false;
+	}
+	$scope.showEmployeeReg = function(){
+		$scope.biz_login = false;
+		$scope.employee_reg = true
+	}
 	$scope.login = function(busInfo){
 		// console.log('joi')
 		authFactory.login(busInfo, 'employer', function(data){
