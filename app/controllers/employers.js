@@ -84,7 +84,8 @@ module.exports = (function(){
 						token: token,
 						user: {
 							_id: user._id, 
-							email: user.email, 
+							email: user.email,
+							name: user.name,
 							logged_in: true}
 					});
 				}

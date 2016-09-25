@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Job = mongoose.model('Job');
-var timeoutManager = require('./../managers/client_manager')
+var timeoutManager = require('./../managers/timeoutManager')
 
 module.exports = (function(){
 	return{
@@ -37,12 +37,13 @@ module.exports = (function(){
 				if (err){
 					console.log('update at ' + req.body.jobID + ' failed');
 				}else{
-					res.json({'status': true, 'result': response);
+					res.json({'status': true, 'result': response});
 				}
 			})
 		},
 
 		create: function(req, res){
+			console.log('in create jobs')
 			var jobInfo = req.body;
 			jobInfo.available = true;
 			jobInfo.completed = false;
@@ -60,7 +61,7 @@ module.exports = (function(){
 					var identifier = result._id;
 
 					timeoutManager.addTimeout(result._id, elapsedTime, function(){
-						Job.find{'_id': identifier}, function(err, result){
+						Job.find({'_id': identifier}, function(err, result){
 							if (!err && !result.employed){
 								Job.remove({'_id': identifier}, function(err, result){
 									if (err){
@@ -73,6 +74,7 @@ module.exports = (function(){
 						});	
 					})
 				}
+				console.log('finished')
 			});
 		}
 	}

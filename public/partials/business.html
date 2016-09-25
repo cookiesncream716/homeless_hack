@@ -1,0 +1,91 @@
+
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+<div>
+	<div id='container'>
+		<div id='header'>
+			<h1>Opportunity Works</h2>
+		</div>
+		<div id='main_content'>
+			<div id='left'>
+				<div class='content'>
+					<h3>Current Job Listings</h3>
+					<div class='jobs'>
+						<p>here is a job</p>
+						<p>more info about it</p>
+						<p>and some more stuff too</p>
+						<p> just need to see if overflow is working the way that I want it to</p>
+					</div>
+					<br>
+					<div class='jobs'>
+						<p>here is a job</p>
+						<p>more info about it</p>
+						<p>and some more stuff too</p>
+						<p> just need to see if overflow is working the way that I want it to</p>
+					</div>
+					<br>
+					<div class='jobs'>
+						<p>here is a job</p>
+						<p>more info about it</p>
+						<p>and some more stuff too</p>
+						<p> just need to see if overflow is working the way that I want it to</p>
+					</div>
+
+					<br>
+					<br>
+				</div>
+			</div>
+			<div id='right'>
+					<h3>Add a Job</h3>
+					
+					<div class='form'>
+					<form>
+						<ul>
+							<li class='register_class'>
+								<label for='title'>Title</label>
+								<input type='text' ng-model='newJob.title'>
+								<span class='reg_sign'>Name of the Job</span>
+							</li>
+
+							<li class='register_class'>
+								<label for='description'>Description</label>
+								<input type='text' ng-model='newJob.description'>
+								<span class='reg_sign'>Job Description</span>
+							</li>
+
+							<li class='register_class'>
+								<label for='street'>Street</label>
+								<input type='text' ng-model='newJob.street'>
+								<span class='reg_sign'>Street Address</span>
+							</li>
+							<li class='register_class'>
+								<label for='city'>City</label>
+								<input type='text' ng-model='newJob.city'>
+								<span class='reg_sign'>City</span>
+							</li>
+							<li class='register_class'>
+								<label for='zipcode'>Zipcode</label>
+								<input type='text' ng-model='newJob.zipcode'>
+								<span class='reg_sign'>Zip</span>
+							</li>
+							<li class='register_class'>
+								<label for='payment'>Payment</label>
+								<input type='text' ng-model='newJob.payment'>
+							</li>
+						</ul>
+						<input type='hidden' ng-value='newJob.id=biz_info.id'>
+						<button ng-click='addJob()'>Submit</button>
+					</form>
+				</div>
+				</div>
+				<div id='bottom'>
+					<h3>Open Jobs</h3>
+					<div class='jobs'>
+						<p>here is a job</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id='footer'>
+		</div>
+	</div>
+</div>
