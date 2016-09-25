@@ -5,7 +5,7 @@ myApp.controller('businessController', function($scope, authFactory, jobsFactory
 		console.log($scope.biz_info.id)
 	});
 	jobsFactory.biz_getJobs($scope.biz_info.id, function(data){
-
+		$scope.currentJobs = data
 	})
 	$scope.addJob = function(){
 		console.log('clicked add Job');

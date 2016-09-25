@@ -11,6 +11,7 @@ myApp.factory('jobsFactory', function($http, AuthTokenFactory){
 		console.log('biz id:' + id);
 		$http.post('/jobs/' + id).success(function(output){
 			console.log(output)
+			callback(output)
 		})
 	}
 	return factory;
