@@ -41,7 +41,12 @@ body{
 	text-align: center;
 	color:black;
 }
-
+#header{
+	font-size:50px;
+	background-color: #78E0DC;
+	text-align: center;
+	color:black;
+}
 #main_content{
 	text-align: center;
 }
@@ -139,10 +144,11 @@ label{
 	display:block;
 	border:none;
 	background-color: #78E0DC;
-	height:50px;
+	height:38px;
 	font-size:20px;
 	color:#898980;
-
+	margin-top:-10px;
+	outline: none;
 }
 
 .first{
@@ -186,6 +192,12 @@ label{
 	color:white;
 }
 
+.button3{
+	height:40px;
+	width:80px;
+	background-color: #898980;
+	color:white;
+}
 button:hover{
 	background-color:#78E0DC ;
 	color:white;

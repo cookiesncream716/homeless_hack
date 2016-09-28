@@ -30,6 +30,8 @@ myApp.controller('userLandingController', function($scope, jobsFactory, $locatio
 	function initControllerScope(){
 		authFactory.get_user(function(user){
 			$scope.user = user;
+			console.log("THIS SHOULD BE USER",user);
+
 
 			jobsFactory.getJobsForUser(user.id, user.city, function(result){
 				console.log(result);

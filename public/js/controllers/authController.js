@@ -3,7 +3,10 @@ myApp.controller('authController', function($scope, authFactory, $location){
 	$scope.biz_reg = false;
 	$scope.employeeLogin = true;
 	$scope.biz_login = true;
-	$scope.userInfo = {}
+	$scope.userInfo = {};
+	$scope.busRegInfo = {};
+	$scope.userReg = {};
+
 	$scope.showRegBiz = function(){
 		$scope.biz_reg = true;
 		$scope.employeeLogin = false;

@@ -21,7 +21,7 @@
 			<p>Created at: {{job.createdAt | date: 'MMMM dd, yyyy'}}</p>
 			<p>Address: {{job.street}} {{job.city}}, {{job.zipcode}}</p>
 			<p>Description: {{job.description}}</p>
-			<div ng-if="current=false">
+			<div ng-if="current==false">
 			<button ng-click = "job.accept = true">Accept Job</button>
 			<div ng-show = "job.accept">
 				<p>Employer: {{job._employer.name}}</p>
