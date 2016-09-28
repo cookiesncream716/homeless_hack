@@ -44,6 +44,7 @@ myApp.factory('authFactory', function($http, AuthTokenFactory){
 	factory.userRegister = function(info, callback){
 		console.log(info);
 		$http.post('/userRegister', info).success(function(output){
+			user = {id: output.user._id, username: output.user.username, city: output.user.city};
 			console.log('userRegister callback in factory')
 			callback(output);
 		})

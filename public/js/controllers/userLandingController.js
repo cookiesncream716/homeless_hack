@@ -26,7 +26,7 @@ myApp.controller('userLandingController', function($scope, jobsFactory, $locatio
 
 	$scope.resume = function(){
 		$location.path('/resume')
-	}
+	};
 	function initControllerScope(){
 		authFactory.get_user(function(user){
 			$scope.user = user;
@@ -45,7 +45,7 @@ myApp.controller('userLandingController', function($scope, jobsFactory, $locatio
 				}
 			});
 		});
-	}
+	};
 	$scope.logout = function(){
 		console.log('logout')
 		authFactory.logout(function(){
@@ -53,3 +53,23 @@ myApp.controller('userLandingController', function($scope, jobsFactory, $locatio
 		})
 	}
 });
+
+// function initControllerScope(){
+// 	authFactory.get_user(function(user){
+// 		$scope.user = user;
+// 		console.log("THIS SHOULD BE USER",user);
+
+
+// 		jobsFactory.getJobsForUser(user.id, user.city, function(result){
+// 			console.log(result);
+// 			if (result.status){
+// 				$scope.jobs = result.jobs;
+
+// 				if ('currentJob' in result){
+// 					$scope.currentJob = result.currentJob;
+// 					$scope.current = true;
+// 				}
+// 			}
+// 		});
+// 	});
+// }
