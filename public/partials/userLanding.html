@@ -1,5 +1,8 @@
-<div id = 'user'>
-	<h4>Welcome, {{user.username}}</h4>
+<div id = 'container'>
+	<div id='header'>
+		<h1>Welcome, {{user.username}}</h1>
+	</div>
+	
 	<button ng-href = "/resume">See Resume For Past Jobs</button>
 
 	<div id = 'currentJob' ng-if = 'current'>

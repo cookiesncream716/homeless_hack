@@ -60,46 +60,48 @@ $(document).ready(function(){
 		</div>
 	</div>
 
-	<div id='u_reg' class='second'>
+	<div id='business_registration' class='second'>
+		<h2>Business Registration</h2>
 		<form>
-
-		<h2>Employee Registration</h2>
 		<div class='form'>
 			<ul>
-				<li class='register_class'>
-					<label for='name'>Name</label>
-					<input type='text' ng-model='userReg.name'>
-					<span class='reg_sign'>Name</span>
-				</li>
+			<li class='register_class'>
+				<label for='Name'>Name</label>
+				<input type="text" ng-model="busRegInfo.name">
+				<span class='reg_sign'>Name of the Job</span>
+			</li>
+			<li class='register_class'>
+				<label for='Street'>Street:</label>
+				<input type="text" ng-model="busRegInfo.street">
+				<span class='reg_sign'>Name of the Job</span>
+			</li>
+			<li class='register_class'>
+				<label for='City'>City:</label>
+				<input type="text" ng-model="busRegInfo.city">
+				<span class='reg_sign'>Name of the Job</span>
+			</li>
+			<li class='register_class'>
+				<label for='Zipcode'>Zipcode</label>
+				<input type="text" ng-model="busRegInfo.zipCode">
+				<span class='reg_sign'>Name of the Job</span>
+			</li>				
 
-				<li class='register_class'>
-					<label for='username'>Username</label>
-					<input type='text' ng-model='userReg.username'>
-					<span class='reg_sign'>Name</span>
-				</li>
-
-				<li class='register_class'>
-					<label for='city'>City</label>
-					<input type='text' ng-model='userReg.city'>
-					<span class='reg_sign'>City</span>
-				</li>
-			
-				<li class='register_class'>
-					<label for='zip Code'>Zip Code</label>
-					<input type='number' ng-model='userReg.zipCode'>
-					<span class='reg_sign'>City</span>
-				</li>
-
-				<li class='register_class'>
-					<label for='password'>Password</label>
-					<input type='password' ng-model='userReg.password'>
-					<span class='reg_sign'>City</span>
-				</li>
+			<li class='register_class'>
+				<label for='Email'>Email</label>
+				<input type="email" ng-model='busRegInfo.email'>
+				<span class='reg_sign'>Name of the Job</span>
+			</li>
+			<li class='register_class'>
+				<label for='Password'>Password</label>
+				<input type="password" ng-model="busRegInfo.password">
+				<span class='reg_sign'>Name of the Job</span>
+			</li>
 			</ul>
 		</div>
-		<button ng-click='userRegistration()'>Register</button>
+		<button ng-click='register()'>Register</button>
 		</form>
 	</div>
+	<!-- div should go here! -->
 </div>
 
 
@@ -148,47 +150,50 @@ $(document).ready(function(){
 	</div>
 
 
-	<div id='business_registration' class='second'>
-		<h2>Business Registration</h2>
+	<div id='u_reg' class='second'>
 		<form>
+
+		<h2>Employee Registration</h2>
 		<div class='form'>
 			<ul>
-			<li class='register_class'>
-				<label for='Name'>Name</label>
-				<input type="text" ng-model="busRegInfo.name">
-				<span class='reg_sign'>Name of the Job</span>
-			</li>
-			<li class='register_class'>
-				<label for='Street'>Street:</label>
-				<input type="text" ng-model="busRegInfo.street">
-				<span class='reg_sign'>Name of the Job</span>
-			</li>
-			<li class='register_class'>
-				<label for='City'>City:</label>
-				<input type="text" ng-model="busRegInfo.city">
-				<span class='reg_sign'>Name of the Job</span>
-			</li>
-			<li class='register_class'>
-				<label for='Zipcode'>Zipcode</label>
-				<input type="text" ng-model="busRegInfo.zipCode">
-				<span class='reg_sign'>Name of the Job</span>
-			</li>				
+				<li class='register_class'>
+					<label for='name'>Name</label>
+					<input type='text' ng-model='userReg.name'>
+					<span class='reg_sign'>Name</span>
+				</li>
 
-			<li class='register_class'>
-				<label for='Email'>Email</label>
-				<input type="email" ng-model='busRegInfo.email'>
-				<span class='reg_sign'>Name of the Job</span>
-			</li>
-			<li class='register_class'>
-				<label for='Password'>Password</label>
-				<input type="password" ng-model="busRegInfo.password">
-				<span class='reg_sign'>Name of the Job</span>
-			</li>
+				<li class='register_class'>
+					<label for='username'>Username</label>
+					<input type='text' ng-model='userReg.username'>
+					<span class='reg_sign'>Name</span>
+				</li>
+
+				<li class='register_class'>
+					<label for='city'>City</label>
+					<input type='text' ng-model='userReg.city'>
+					<span class='reg_sign'>City</span>
+				</li>
+			
+				<li class='register_class'>
+					<label for='zip Code'>Zip Code</label>
+					<input type='number' ng-model='userReg.zipCode'>
+					<span class='reg_sign'>City</span>
+				</li>
+
+				<li class='register_class'>
+					<label for='password'>Password</label>
+					<input type='password' ng-model='userReg.password'>
+					<span class='reg_sign'>City</span>
+				</li>
 			</ul>
 		</div>
-		<button ng-click='register()'>Register</button>
+		<button ng-click='userRegistration()'>Register</button>
 		</form>
 	</div>
+
+
+
+
 
 </div>
 
